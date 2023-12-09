@@ -6,10 +6,10 @@
 
     <changeSet id="create-table-templates" author="M_Zhivotovskiy">
         <createTable tableName="templates">
-            <column name="id" type="BIGSERIAL" remarks = "id templates">
+            <column name="id" type="uuid" remarks = "id templates" defaultValue="" autoIncrement="true" >
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
+            <column name="name" type="VARCHAR(255)" >
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="create_data" type="TIMESTAMP">
