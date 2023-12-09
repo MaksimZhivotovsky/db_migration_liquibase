@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-table-template_elements" author="M_Zhivotovskiy">
+        <createTable tableName="template_elements">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="create_value" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_value" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_archive" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modify_date" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="service_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="organization_id" type="BIGSERIAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+            </column>
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
