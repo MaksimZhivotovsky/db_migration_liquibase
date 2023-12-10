@@ -29,6 +29,14 @@
 <!--</createView>-->
 <!--</changeSet>-->
 
+<!--defaultValue="" autoIncrement="true" -->
 
+
+<!--<changeSet id="insert data to test_sql_table_2" author="TestUsers">
+        <insert tableName="test_sql_table_2">
+            <column name="name" value="model"/>
+            <column name="description" value="какая-либо модель"/>
+        </insert>
+    </changeSet>-->
 
 
