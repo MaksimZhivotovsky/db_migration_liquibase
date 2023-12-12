@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-grant_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "grant_sc" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-grant_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.grant_sc (
+                 id int4 NOT NULL,
+                 "name" varchar NULL,
+                 CONSTRAINT grant_sc_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

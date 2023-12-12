@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_formula_last_value" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_formula_last_value" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_formula_last_value" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_formula_last_value (
+                  id bigserial NOT NULL,
+                  client_id int8 NOT NULL,
+                  monitoring_object_property_id int8 NULL,
+                  formula_id uuid NOT NULL,
+                  color_id int4 NULL,
+                  date_creation timestamp NOT NULL,
+                  value varchar NULL,
+                  arg_ids varchar NULL,
+                  level_id int8 NULL,
+                  rule_id int8 NULL,
+                  trigger_id int8 NULL,
+                  istech bool NULL,
+                  tech_ids varchar NULL,
+                  CONSTRAINT formula_id_un UNIQUE (formula_id),
+                  CONSTRAINT monitoring_formula_last_value_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_formula_last_value" author="M_Zhivotovskiy">
+    <sql splitStatements="true">
+        COMMENT ON COLUMN public.monitoring_formula_last_value.id IS 'ID записи';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.client_id IS 'ID клиента';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.monitoring_object_property_id
+            IS 'ID объекта мониторинга';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.formula_id IS 'ID формулы';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.color_id IS 'ID цвета';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.date_creation IS 'Время создания';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.value IS 'Значение';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.arg_ids IS 'Аргументы использованные в вычислении';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.level_id IS 'Id уровня на основе порогов';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.rule_id IS 'Id правила';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.trigger_id IS 'Id порога';
+        COMMENT ON COLUMN public.monitoring_formula_last_value.tech_ids IS 'Id тех перерывов';
+    </sql>
+    </changeSet>
+</databaseChangeLog>

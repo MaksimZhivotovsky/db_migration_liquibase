@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="subject_id"
+                constraintName="monitoring_object_property_address_fk"
+                referencedTableName="address_subject"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk_0" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="building_id"
+                constraintName="monitoring_object_property_address_fk_0"
+                referencedTableName="address_building"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk_1" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="settlement_id"
+                constraintName="monitoring_object_property_address_fk_1"
+                referencedTableName="address_settlement"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk_2" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="town_id"
+                constraintName="monitoring_object_property_address_fk_2"
+                referencedTableName="address_town"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk_3" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="district_id"
+                constraintName="monitoring_object_property_address_fk_3"
+                referencedTableName="address_district"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address-monitoring_object_property_address_fk_6" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address"
+                baseColumnNames="street_id"
+                constraintName="monitoring_object_property_address_fk_6"
+                referencedTableName="address_street"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

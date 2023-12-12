@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-procedure-update_object_status_on_incidents_change" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE PROCEDURE public.update_object_status_after_incidents_change_proc()
+             LANGUAGE plpgsql
+            AS $procedure$
+                        begin
+
+                        delete from monitoring_object_status where entity_sc_id not in
+                                                                   (select distinct entity_sc_id from incident_sc where date_close is null );
+
+                        END $procedure$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

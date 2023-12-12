@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-incident_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "incident_sc" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-incident_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.incident_sc (
+                id bigserial NOT NULL,
+                "name" varchar NOT NULL,
+                description varchar NULL,
+                entity_sc_id int8 NULL,
+                entity_id int8 NULL,
+                monitoring_system_id uuid NULL,
+                adapter_id uuid NULL,
+                incident_type int2 NOT NULL,
+                trigger_id int8 NULL,
+                date_creation timestamp NOT NULL,
+                date_close timestamp NULL,
+                priority_id int4 NULL,
+                rule_id int8 NULL,
+                color_id int4 NULL,
+                entity_sc_property_id int8 NULL,
+                client_id int8 NULL,
+                istech bool NULL,
+                value float8 NULL,
+                count int8 NULL,
+                date_cause timestamp NULL,
+                timetotal int8 NULL,
+                tech_ids varchar NULL,
+                CONSTRAINT incident_sc_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

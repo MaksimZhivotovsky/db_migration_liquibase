@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-index-monitoring_object_entity-monitoring_object_entity_dic_element_id_idx"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE INDEX monitoring_object_entity_dic_element_id_idx
+                ON public.monitoring_object_entity USING btree (dic_element_id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-index-monitoring_object_entity-monitoring_object_entity_entity_map_id_idx"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE INDEX monitoring_object_entity_entity_map_id_idx
+                ON public.monitoring_object_entity USING btree (entity_map_id);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-dic_element_params-dic_element_params_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_element_params"
+                baseColumnNames="dic_element_id"
+                constraintName="dic_element_params_fk"
+                referencedTableName="dic_entity_element"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_element_params-dic_element_params_type_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_element_params"
+                baseColumnNames="param_type_id"
+                constraintName="dic_element_params_type_fk"
+                referencedTableName="dic_params_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

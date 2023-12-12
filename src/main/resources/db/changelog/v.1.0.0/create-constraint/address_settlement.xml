@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-address_settlement-address_settlement_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address_settlement"
+                baseColumnNames="district_id"
+                constraintName="address_settlement_fk"
+                referencedTableName="address_district"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address_settlement-address_settlement_fk_1" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address_settlement"
+                baseColumnNames="town_id"
+                constraintName="address_settlement_fk_1"
+                referencedTableName="address_town"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

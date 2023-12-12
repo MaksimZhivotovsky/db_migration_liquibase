@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="create-constraint/adapter_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/adapter_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address_building.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address_district.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address_settlement.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address_street.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/address_town.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/auth_session.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/auth_token.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/dic_element_params.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/dic_entity_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/dic_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/dic_subscribe_controller.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/entity_property_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/entity_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/event_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/formula.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/incident_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

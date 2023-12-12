@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-entity_property_changelog" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "entity_property_changelog" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-entity_property_changelog" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.entity_property_changelog (
+                  id bigserial NOT NULL,
+                  entity_id int8 NOT NULL,
+                  property_id int8 NOT NULL,
+                  date_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  old_value varchar NULL,
+                  new_value varchar NULL,
+                  CONSTRAINT pk_entity_property_changelog PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

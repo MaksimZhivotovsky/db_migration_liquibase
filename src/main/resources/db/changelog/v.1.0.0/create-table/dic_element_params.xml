@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-dic_element_params" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "dic_element_params" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-dic_element_params" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.dic_element_params (
+               id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+               "name" varchar(128) NOT NULL,
+               param_type_id int8 NOT NULL,
+               value varchar(256) NULL,
+               dic_element_id int8 NOT NULL,
+               dic_type_id int8 NULL,
+               require bool NOT NULL DEFAULT false,
+               "comment" varchar(512) NULL,
+               is_map bool NOT NULL DEFAULT false,
+               created timestamp NULL,
+               modified timestamp NULL,
+               is_hide bool NOT NULL DEFAULT false,
+               is_archive bool NOT NULL DEFAULT false,
+               address_id int8 NULL,
+               CONSTRAINT dic_element_params_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

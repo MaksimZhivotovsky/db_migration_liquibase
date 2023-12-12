@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_autocreation" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_autocreation" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_autocreation" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_autocreation (
+                   id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+                   dic_type_id int8 NULL,
+                   status varchar NULL,
+                   adapter_id uuid NULL,
+                   monitoring_system_id uuid NULL,
+                   client_id int8 NULL,
+                   started_at timestamp NULL,
+                   finished_at timestamp NULL,
+                   status_updated_at timestamp NULL,
+                   entities_created int8 NULL,
+                   properties_created int8 NULL,
+                   relations_created int8 NULL,
+                   error_message varchar NULL,
+                   CONSTRAINT monitoring_object_autocreation_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_object_autocreation" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            COMMENT ON COLUMN public.monitoring_object_autocreation.id IS 'ID автосоздания';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.dic_type_id IS 'ID справочника';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.status IS 'Статус';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.adapter_id IS 'ID адаптера';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.monitoring_system_id
+                IS 'ID системы мониторинга';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.client_id IS 'ID клиента';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.started_at IS 'Время начала';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.finished_at IS 'Время окончания';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.status_updated_at
+                IS 'Время последнего обновления статуса';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.entities_created
+                IS 'Кол-во созданных объектов мониторинга';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.properties_created
+                IS 'Кол-во созданных параметров';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.relations_created
+                IS 'Кол-во созданных отношений между объектами';
+            COMMENT ON COLUMN public.monitoring_object_autocreation.error_message IS 'Текст ошибки';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

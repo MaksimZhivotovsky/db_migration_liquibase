@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-address_street-address_street_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address_street"
+                baseColumnNames="town_id"
+                constraintName="address_street_fk"
+                referencedTableName="address_town"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-address_street-address_street_fk_2" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="address_street"
+                baseColumnNames="settlement_id"
+                constraintName="address_street_fk_2"
+                referencedTableName="address_settlement"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

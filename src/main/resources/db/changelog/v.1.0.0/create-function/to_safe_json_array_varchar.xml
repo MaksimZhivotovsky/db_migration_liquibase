@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-to_safe_json_array_varchar" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.to_safe_json_array_varchar(in_1 character varying)
+             RETURNS character varying
+             LANGUAGE plpgsql
+            AS $function$
+                        begin
+                if textregexeq($1,'^\[(,|\d|\s)+\]$') then
+                        if textregexeq(regexp_replace($1, '\s*,\s*', '', 'g'),'^\[\d+\]$') then return $1;
+                        else return '[]';
+                        end if;
+                        else return '[]';
+                        end if;
+                        end;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

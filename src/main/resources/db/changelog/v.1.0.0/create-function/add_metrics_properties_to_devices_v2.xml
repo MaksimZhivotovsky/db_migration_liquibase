@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-add_metrics_properties_to_devices_v2" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.add_metrics_properties_to_devices_v2(devicetypeid bigint, autocreateid bigint)
+             RETURNS record
+             LANGUAGE plpgsql
+            AS $function$
+
+                        declare param record;
+            declare formula_type record;
+            declare device record;
+            declare inserted_property_id int8;
+            declare new_prop_name varchar;
+            declare result_record record;
+            declare param_to_create record;
+            declare props_to_create metric_property_to_create_info[];
+            declare prop_names_already_existing varchar[];
+                        begin
+
+                        for device in
+
+                        select moe.id as id, moe."name" as device_name from monitoring_object_entity moe join entity e on e.id = moe.entity_map_id
+                        where e.entity_type_id = deviceTypeId and moe.autocreate_id = autocreateId
+
+                            loop
+
+                prop_names_already_existing := array[]::varchar[];
+
+                        for param in
+
+                        select e_child."name" as entity_map_name, 4 as dic_property_type_id,
+                               (select epv_desc.value from entity_property_value epv_desc
+                                                               join entity_property ep_desc on ep_desc."name"  = 'description' and epv_desc.entity_id = e_child.id
+                                   and ep_desc.id = epv_desc.property_id limit 1) as description,
+                    moe.id as entity_id,
+                    false as is_map, e_child.id as entity_map_id, true as is_require,
+                    false as is_measured, moe_child.measure_unit_id as measure_unit_id ,
+                    true as is_formula, false as is_archive,
+                    false as is_hide, (select molv.value  from monitoring_object_last_value molv
+                    where molv.object_id=moe_child.id order by molv.date_creation desc limit 1) as value,
+                    moe_child.id as assigned_object_id,
+                    moe_child."name" as assigned_object_name,
+                    case when moe2.name is null then '' else concat(moe2.name, '_') end as middle_object_name
+                    from monitoring_object_entity moe
+                    join monitoring_object_relation mor2 on mor2.entity_id_1 = moe.id
+                    left join monitoring_object_relation mor3 on mor3.entity_id_1 = mor2.entity_id_2
+                    join monitoring_object_entity moe_child on moe_child.id = mor3.entity_id_2 or moe_child.id = mor2.entity_id_2
+                    left join monitoring_object_entity moe2 on moe2.id = mor3.entity_id_1
+                    join entity e_child on moe_child.entity_map_id  = e_child.id
+                    where moe.id = device.id and moe_child.is_map_value = true
+                    order by moe.id, moe_child.id
+                    limit 300
+
+
+
+                loop
+
+
+                    for formula_type in
+                        select id, prefix from (values (9, ''), (8, 'Min_'), (7, 'Max_'), (5, 'Avg_')) as formula_type_vals(id, prefix)
+
+                            loop
+
+                            new_prop_name := concat(formula_type.prefix, param.middle_object_name, param.entity_map_name);
+
+                        if new_prop_name = any(prop_names_already_existing)
+                            then
+                        select false::boolean as res, concat ('Невозможно создать два параметра с одинаковым именем "',
+                            new_prop_name, '" у объекта "', device.device_name , '" id = ', device.id)::varchar as msg
+                        into result_record;
+                        return result_record;
+                        end if;
+
+                            if exists (select * from monitoring_object_property mop where mop.entity_id = device.id
+                                and mop."name" = new_prop_name and mop.is_archive = false )
+                            then
+                        select false::boolean as res, concat ('Уже существует параметр с именем "',
+                            new_prop_name, '" у объекта "', device.device_name , '" id = ', device.id)::varchar as msg
+                        into result_record;
+                        return result_record;
+                        end if;
+
+                            prop_names_already_existing := array_append(prop_names_already_existing, new_prop_name);
+
+                            props_to_create := array_append(props_to_create, row(new_prop_name, param.description, param.entity_id,
+                            param.measure_unit_id, param.value, formula_type.id,
+                            param.assigned_object_id, param.assigned_object_name, param.entity_map_id)::metric_property_to_create_info);
+
+                        end loop;
+
+                        end loop;
+
+                        end loop;
+
+
+                        for param_to_create in select prop_name, description, entity_id,
+                                                      measure_unit_id, value, formula_type_id, assigned_object_id, assigned_object_name, entity_map_id
+                                               from unnest(props_to_create)
+                                                        loop
+                                                   insert into public.monitoring_object_property
+                                               ("name", dic_property_type_id, description, entity_id,
+                                                is_map, is_require, is_measured,
+                                                measure_unit_id, is_formula, is_archive,
+                                                is_hide, value)
+
+                                               values (param_to_create.prop_name, 4, param_to_create.description, param_to_create.entity_id,
+                                                   false, true, false,
+                                                   param_to_create.measure_unit_id, true, false,
+                                                   false, param_to_create.value) returning id into inserted_property_id;
+
+                        insert into public.formula
+                        (id, formula_type, object_property_id,
+                         id_arguments, is_object, is_requests, is_value, is_count,
+                         date_creation, is_child, arguments,
+                         is_all_object, is_all_parameter, assignment_entity_map_id, culc_period)
+                        values(gen_random_uuid(), param_to_create.formula_type_id, inserted_property_id,
+                               json_build_array(param_to_create.assigned_object_id), true, false, true, false,
+                               CURRENT_TIMESTAMP, false, json_build_object('objects', json_build_array(json_build_object(
+                                    'id', param_to_create.assigned_object_id, 'name', param_to_create.assigned_object_name)), 'parameters', json_build_array()),
+                               false, false,  param_to_create.entity_map_id, 0);
+
+                        end loop;
+
+                        drop table if exists props_to_create_from_metrics_temp;
+                        drop table if exists prop_names_already_existing_temp;
+
+
+                        insert into dic_element_params
+                        ("name", param_type_id, dic_element_id, require, "comment", is_map, is_hide)
+                        select mop."name", 4, min(moe.dic_element_id), false, min(mop.description), false, false
+                        from monitoring_object_property mop
+                                 join formula f on f.object_property_id = mop.id
+                                 join monitoring_object_entity moe on moe.id = mop.entity_id
+                                 join entity e on e.id = moe.entity_map_id
+                        where e.entity_type_id = deviceTypeId and moe.autocreate_id = autocreateId
+                          and f.assignment_entity_map_id is not null
+                        group by mop."name";
+
+                        update monitoring_object_property mop set dic_parameter_id = dep.id
+                            from dic_element_params dep
+            join monitoring_object_entity moe on moe.dic_element_id = dep.dic_element_id
+                            join monitoring_object_property mop2 on mop2.entity_id = moe.id
+                            join formula f on f.object_property_id = mop2.id
+                            join entity e on e.id = moe.entity_map_id
+                        where e.entity_type_id = deviceTypeId and moe.autocreate_id = autocreateId
+                          and f.assignment_entity_map_id is not null and moe.id = mop.entity_id and mop2.id = mop.id
+                          and dep."name" = mop2.name;
+
+                        select true::boolean as res, ''::varchar as msg into result_record;
+                        return result_record;
+
+                        end $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

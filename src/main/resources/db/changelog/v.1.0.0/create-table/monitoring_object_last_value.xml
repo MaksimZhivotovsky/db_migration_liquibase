@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_last_value" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_last_value" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_last_value" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_last_value (
+                 id bigserial NOT NULL,
+                 monitoring_system_id uuid NOT NULL,
+                 adapter_id uuid NOT NULL,
+                 client_id int8 NOT NULL,
+                 object_id int8 NULL,
+                 object_sc_id int8 NULL,
+                 color_id int4 NULL,
+                 date_creation timestamp NOT NULL,
+                 value float8 NULL,
+                 trigger_id int8 NULL,
+                 rule_id int8 NULL,
+                 level_id int4 NULL,
+                 date_cause timestamp NULL,
+                 istech bool NULL,
+                 is_not_work bool NULL,
+                 inserted_ch timestamp NULL,
+                 "condition" varchar NULL,
+                 object_sc_property_id int8 NULL,
+                 tech_ids varchar NULL,
+                 CONSTRAINT monitoring_object_last_value_pk PRIMARY KEY (id),
+                 CONSTRAINT monitoring_object_last_value_un UNIQUE (object_sc_id, object_sc_property_id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

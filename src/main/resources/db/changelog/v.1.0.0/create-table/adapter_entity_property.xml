@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-adapter_entity_property" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "adapter_entity_property" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-adapter_entity_property" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+        CREATE TABLE public.adapter_entity_property (
+            id bigserial NOT NULL,
+            "name" varchar NULL,
+            description varchar NULL,
+            entity_id uuid NOT NULL,
+            dic_parameter_id int8 NULL,
+            dic_property_type_id int8 NULL,
+            default_value varchar(256) NULL,
+            value varchar NULL,
+            dic_value_id int8 NULL,
+            system_name varchar NULL,
+            is_require bool NOT NULL DEFAULT false,
+            created timestamp NULL,
+            modified timestamp NULL,
+            CONSTRAINT entity_adapter_property_front_pk PRIMARY KEY (id)
+        );
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

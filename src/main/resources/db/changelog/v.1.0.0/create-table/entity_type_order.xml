@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-entity_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "entity_type" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-entity_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.entity_type_order (
+                  id serial4 NOT NULL,
+                  entity_type_id int8 NOT NULL,
+                  "order" int4 NOT NULL,
+                  filter_property_name varchar NULL,
+                  filter_entity_type_id int8 NULL,
+                  description varchar NULL,
+                  parent_type_id int8 NULL,
+                  adapter_type_system_name varchar NULL,
+                  system_type_name varchar NULL,
+                  is_external_type bool NOT NULL DEFAULT false,
+                  CONSTRAINT newtable_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

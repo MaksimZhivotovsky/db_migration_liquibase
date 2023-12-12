@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-adapter_entity_property-adapter_entity_property_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="adapter_entity_property"
+                baseColumnNames="entity_id"
+                constraintName="adapter_entity_property_fk"
+                referencedTableName="adapter_entity"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-adapter_entity_property-adapter_entity_property_fk_2" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="adapter_entity_property"
+                baseColumnNames="dic_property_type_id"
+                constraintName="adapter_entity_property_fk_2"
+                referencedTableName="dic_params_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

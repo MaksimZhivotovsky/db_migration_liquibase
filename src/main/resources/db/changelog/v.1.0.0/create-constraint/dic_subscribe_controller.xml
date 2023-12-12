@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-dic_subscribe_controller-dic_subscribe_dictionary_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_subscribe_controller"
+                baseColumnNames="controller_id"
+                constraintName="dic_subscribe_dictionary_fk"
+                referencedTableName="dic_controller"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

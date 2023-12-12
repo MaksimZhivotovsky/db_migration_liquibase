@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-last_processed" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "last_processed" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-last_processed" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.last_processed (
+                   id bigserial NOT NULL,
+                   service varchar NOT NULL,
+                   task_key varchar NOT NULL,
+                   last_processed int8 NULL,
+                   object_ch_id varchar NULL,
+                   CONSTRAINT last_processed_pkey PRIMARY KEY (id),
+                   CONSTRAINT service_key_un1 UNIQUE (service, task_key, object_ch_id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

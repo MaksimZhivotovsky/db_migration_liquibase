@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-journal_discovery" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "journal_discovery" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-journal_discovery" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.journal_discovery (
+                  id bigserial NOT NULL,
+                  adapter_id uuid NOT NULL,
+                  monitoring_system_id uuid NOT NULL,
+                  client_id int8 NOT NULL,
+                  entity_type int4 NOT NULL,
+                  "token" varchar(128) NOT NULL,
+                  date_start int8 NOT NULL,
+                  date_end int8 NULL,
+                  count int8 NULL,
+                  completed bool NOT NULL DEFAULT false,
+                  last_processed timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                  sent_notification bool NOT NULL DEFAULT false,
+                  CONSTRAINT journal_discovery_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

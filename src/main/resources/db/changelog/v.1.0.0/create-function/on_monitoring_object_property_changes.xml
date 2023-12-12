@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-on_monitoring_object_property_changes" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_monitoring_object_property_changes()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+                    IF (TG_OP = 'DELETE') THEN
+                        INSERT INTO monitoring_object_property_changes(property_id, operation, date_time, value, color_id)
+                        SELECT OLD.id, TG_OP, now(), OLD.value, OLD.default_colour;
+                        RETURN OLD;
+                        ELSIF (TG_OP = 'UPDATE') THEN
+                        INSERT INTO monitoring_object_property_changes(property_id, operation, date_time, value, color_id)
+                        SELECT NEW.id, TG_OP, now(), NEW.value, NEW.default_colour;
+                        RETURN NEW;
+                        ELSIF (TG_OP = 'INSERT') THEN
+                        INSERT INTO monitoring_object_property_changes(property_id, operation, date_time, value, color_id)
+                        SELECT NEW.id, TG_OP, now(), NEW.value, NEW.default_colour;
+                        RETURN NEW;
+                        END IF;
+                        RETURN NULL;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

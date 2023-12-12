@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="create-procedure/add_metrics_properties_to_devices.xml" relativeToChangelogFile="true"/>
+    <include file="create-procedure/update_object_status_after_incidents_change_proc.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-formula" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "formula" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-formula" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.formula (
+                id uuid NOT NULL DEFAULT gen_random_uuid(),
+                formula_type int2 NULL,
+                fun_type int2 NULL,
+                object_property_id int8 NOT NULL,
+                id_arguments varchar NULL,
+                is_object bool NOT NULL DEFAULT false,
+                is_requests bool NOT NULL DEFAULT false,
+                is_value bool NOT NULL DEFAULT false,
+                is_count bool NOT NULL,
+                culc_period int8 NULL,
+                date_creation timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                criteria_count varchar NULL,
+                is_child bool NOT NULL DEFAULT false,
+                modified timestamp NULL,
+                arguments varchar NULL,
+                multiplier float8 NULL,
+                element_id_object varchar NULL,
+                plugin_name_object varchar NULL,
+                plugin_name_object_child varchar NULL,
+                is_all_object bool NOT NULL DEFAULT false,
+                is_all_parameter bool NOT NULL DEFAULT false,
+                assignment_entity_map_id int8 NULL,
+                parent_object_id int8 NULL,
+                object_name_compare_id int8 NULL,
+                object_mask varchar NULL,
+                argument_property_types varchar NULL,
+                CONSTRAINT formula_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

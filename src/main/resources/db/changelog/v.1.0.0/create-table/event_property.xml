@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-event_property" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "event_property" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-event_property" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.event_property (
+                   id bigserial NOT NULL,
+                   event_id int8 NOT NULL,
+                   "name" varchar(100) NOT NULL,
+                   value text NOT NULL,
+                   property_type varchar(128) NOT NULL,
+                   description varchar(256) NULL,
+                   CONSTRAINT event_properties_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-trigger_archive_monitoring_property" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.trigger_archive_monitoring_property()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+            if (NEW.is_archive)
+            then
+                        update monitoring_object_property
+                        set is_archive = true
+                        where entity_id = NEW.id;
+
+                        update public.rule_sc
+                        set is_archive = true
+                        WHERE entity_sc_id = NEW.id or
+                                entity_property_sc_id in (select id FROM monitoring_object_property where entity_id = NEW.id);
+
+                        update public.rule_request
+                        set is_archive = true
+                        WHERE entity_sc_id = NEW.id or
+                                entity_property_sc_id in (select id FROM monitoring_object_property where entity_id = NEW.id);
+
+                        UPDATE public.monitoring_widget
+                        SET is_archive = true
+                        WHERE object_id = NEW.id;
+
+                        UPDATE public.monitoring_object_user_customization
+                        SET is_archive = true
+                        WHERE monitoring_object_id = NEW.id;
+                        end if;
+                        return NEW;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

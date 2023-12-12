@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="create-trigger/adapter_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/adapter_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/address.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/dic_element_params.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/dic_entity_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/dic_entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/entity_property_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/formula.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/incident_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

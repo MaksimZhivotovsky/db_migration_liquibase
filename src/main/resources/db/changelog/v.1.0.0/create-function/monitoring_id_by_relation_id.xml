@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-monitoring_id_by_relation_id" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.monitoring_id_by_relation_id(relation_list character varying)
+             RETURNS TABLE(id bigint, entity_id bigint, parent_id bigint, is_archive boolean)
+             LANGUAGE sql
+             PARALLEL SAFE
+            AS $function$
+                        SELECT  id, entity_id_2, entity_id_1 as parent_id, is_archive FROM public.monitoring_object_relation m WHERE id = any(string_to_array( relation_list, ',')::int8[] ) ;
+
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

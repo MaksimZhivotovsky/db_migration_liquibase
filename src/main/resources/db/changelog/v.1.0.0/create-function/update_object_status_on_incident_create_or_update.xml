@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-update_object_status_on_incident_create_or_update" author="M_Zhivotovskiy">
+        <sql>
+            CREATE OR REPLACE FUNCTION public.update_object_status_on_incident_create_or_update()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+
+                        insert into monitoring_object_status
+                            (entity_sc_id, priority, color_id, date_cause, date_creation)
+                        select entity_sc_id, priority_id, color_id, date_cause, now()
+                        from incident_sc where entity_sc_id = new.entity_sc_id
+                                           and date_close is null
+                        order by priority_id asc, date_creation desc limit 1
+                        on conflict (entity_sc_id) do update set
+                            priority = excluded.priority,
+                                                          color_id = excluded.color_id,
+                                                          date_cause = excluded.date_cause,
+                                                          date_creation = now();
+
+                        RETURN NEW;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-index-monitoring_object_property-monitoring_object_property_entity_id_idx"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE INDEX monitoring_object_property_entity_id_idx
+                ON public.monitoring_object_property USING btree (entity_id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-index-monitoring_object_property-monitoring_object_property_un"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE UNIQUE INDEX monitoring_object_property_un
+                ON public.monitoring_object_property USING btree (entity_id, name) WHERE (is_archive IS FALSE);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

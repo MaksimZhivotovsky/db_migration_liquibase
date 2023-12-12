@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-colour_palette" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "colour_palette" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-colour_palette" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.colour_palette (
+               id int2 NOT NULL,
+               "name" varchar NULL,
+               value varchar NULL,
+               CONSTRAINT colour_palette_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-incident_sc-incident_sc_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="incident_sc"
+                baseColumnNames="incident_type"
+                constraintName="incident_sc_fk"
+                referencedTableName="incident_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

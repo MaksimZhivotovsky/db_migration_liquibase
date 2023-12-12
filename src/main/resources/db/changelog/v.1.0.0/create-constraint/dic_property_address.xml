@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="address_subject_id"
+                constraintName="dic_property_address_fk"
+                referencedTableName="address_subject"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk_0" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="address_district_id"
+                constraintName="dic_property_address_fk_0"
+                referencedTableName="address_district"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk_1" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="building_id"
+                constraintName="dic_property_address_fk_1"
+                referencedTableName="address_building"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk_2" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="settlement_id"
+                constraintName="dic_property_address_fk_2"
+                referencedTableName="address_settlement"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk_3" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="street_id"
+                constraintName="dic_property_address_fk_3"
+                referencedTableName="address_street"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-dic_property_address-dic_property_address_fk_4" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="dic_property_address"
+                baseColumnNames="town_id"
+                constraintName="dic_property_address_fk_4"
+                referencedTableName="address_town"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <include file="create-table/adapter_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/adapter_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_building.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_district.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_settlement.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_street.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_subject.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/address_town.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/auth_session.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/auth_token.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/auth_user.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/colour_palette.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/comparison_operator.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/customization_to_user.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_controller.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_element_params.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_entity_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_entity_organizations_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_params_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/dic_subscribe_controller.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_property_changelog.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_property_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_relation_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_type_order.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/event.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/event_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/external_adapter.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/external_system.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/formula.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/formula_last_argument_calculated.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/formula_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/grant_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/incident_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/incident_statuses.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/incident_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/journal_discovery.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/last_processed.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_formula_last_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_autocreation.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_last_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>
+
+<!--Создание view-->
+
+
+<!--<changeSet id="create-view-book-author" author="uPagge">-->
+<!--<createView viewName="author_and_book">-->
+<!--    SELECT p.id as person_id,-->
+<!--    p.first_name as person_first_name,-->
+<!--    b.id as book_id,-->
+<!--    b.name as book_name-->
+<!--    FROM person p-->
+<!--    LEFT JOIN book b on p.id = b.author_id-->
+<!--</createView>-->
+<!--</changeSet>-->
+
+<!--defaultValue="" autoIncrement="true" -->
+
+
+<!--<changeSet id="add-comment-table-formula_last_argument_calculated" author="M_Zhivotovskiy">-->
+<!--<sql splitStatements="true">-->
+<!--    COMMENT ON COLUMN public.formula_last_argument_calculated.id IS 'ID записи';-->
+<!--</sql>-->
+<!--</changeSet>-->
+
+
+<!--<changeSet id="insert data to test_sql_table_2" author="TestUsers">
+        <insert tableName="test_sql_table_2">
+            <column name="name" value="model"/>
+            <column name="description" value="какая-либо модель"/>
+        </insert>
+    </changeSet>-->
+
+

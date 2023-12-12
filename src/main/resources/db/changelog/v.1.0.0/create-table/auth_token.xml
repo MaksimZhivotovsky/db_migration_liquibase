@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-auth_token" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "auth_token" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-auth_token" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.auth_token (
+               id varchar NOT NULL,
+               session_id varchar NOT NULL,
+               "type" varchar NOT NULL,
+               value varchar NOT NULL,
+               data_start timestamp(0) NOT NULL,
+               data_end timestamp(0) NOT NULL,
+               is_delete bool NOT NULL DEFAULT false,
+               msg_cause_delete varchar NULL,
+               cause_delete varchar NULL,
+               CONSTRAINT auth_token_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

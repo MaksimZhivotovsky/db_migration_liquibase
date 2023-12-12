@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-auth_user" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "auth_user" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-auth_user" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.auth_user (
+              id varchar NOT NULL,
+              login varchar NOT NULL,
+              "password" varchar NOT NULL,
+              CONSTRAINT auth_user_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

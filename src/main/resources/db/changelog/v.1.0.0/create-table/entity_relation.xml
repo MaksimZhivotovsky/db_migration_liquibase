@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-entity_relation" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "entity_relation" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-entity_relation" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.entity_relation (
+                id bigserial NOT NULL,
+                entity_id_1 int8 NOT NULL,
+                entity_id_2 int8 NOT NULL,
+                relation_type_id int8 NOT NULL,
+                direction varchar(4) NOT NULL,
+                CONSTRAINT relation_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-function-on_entity_property_value_changes" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_entity_property_value_changes()
+            RETURNS trigger
+            LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+                    IF (TG_OP = 'DELETE') THEN
+                        update monitoring_object_property set value = null, is_map = false, property_map_id = null,
+                                                              default_colour = COALESCE(default_colour, 7) where
+                            property_map_id = OLD.id;
+                        RETURN OLD;
+                        ELSIF (TG_OP = 'UPDATE') then
+                        update monitoring_object_property set value = NEW.value, default_colour = COALESCE(default_colour, 7) where
+                            property_map_id = NEW.id;
+                        RETURN NEW;
+                        END IF;
+                        RETURN NULL;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

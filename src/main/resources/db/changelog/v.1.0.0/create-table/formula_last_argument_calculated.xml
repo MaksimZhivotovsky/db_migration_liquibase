@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-formula_last_argument_calculated" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "formula_last_argument_calculated" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-formula_last_argument_calculated" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.formula_last_argument_calculated (
+                 id bigserial NOT NULL,
+                 formula_id uuid NOT NULL,
+                 object_id int8 NULL,
+                 property_id int8 NULL,
+                 last_historic_calculation_millis int8 NULL,
+                 CONSTRAINT formula_last_argument_calculated_pkey PRIMARY KEY (id),
+                 CONSTRAINT formula_last_argument_calculated_un1 UNIQUE (formula_id, object_id),
+                 CONSTRAINT formula_last_argument_calculated_un2 UNIQUE (formula_id, property_id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-formula_last_argument_calculated" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            COMMENT ON COLUMN public.formula_last_argument_calculated.id IS 'ID записи';
+            COMMENT ON COLUMN public.formula_last_argument_calculated.formula_id IS 'ID формулы';
+            COMMENT ON COLUMN public.formula_last_argument_calculated.object_id IS 'ID объекта мониторинга';
+            COMMENT ON COLUMN public.formula_last_argument_calculated.property_id IS 'ID параметра';
+            COMMENT ON COLUMN public.formula_last_argument_calculated.last_historic_calculation_millis
+                IS 'Последнее обработанное время вставки';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

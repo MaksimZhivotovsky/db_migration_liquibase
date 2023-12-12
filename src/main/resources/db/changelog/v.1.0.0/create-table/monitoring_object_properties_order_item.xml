@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_properties_order_item" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_properties_order_item" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_properties_order_item" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_properties_order_item (
+                id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+                customization_id int8 NOT NULL,
+                monitoring_object_id int8 NULL,
+                property_id int8 NOT NULL,
+                places varchar NULL,
+                created timestamp NULL,
+                modified timestamp NULL,
+                CONSTRAINT monitoring_object_properties_order_item_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_object_properties_order_item" author="M_Zhivotovskiy">
+    <sql splitStatements="true">
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.id IS 'ID порядка';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.customization_id
+            IS 'ID кастомизации';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.monitoring_object_id
+            IS 'ID объекта мониторинга';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.property_id IS 'ID параметра';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.places IS 'Порядковые места параметра';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.created IS 'Время создания';
+        COMMENT ON COLUMN public.monitoring_object_properties_order_item.modified IS 'Время обновления';
+    </sql>
+    </changeSet>
+</databaseChangeLog>

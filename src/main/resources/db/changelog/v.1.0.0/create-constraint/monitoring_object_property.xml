@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-monitoring_object_property-entity_property_front1_fk"
+               author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_property"
+                baseColumnNames="dic_parameter_id"
+                constraintName="entity_property_front1_fk"
+                referencedTableName="dic_element_params"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-monitoring_object_property-entity_property_front2_fk"
+               author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_property"
+                baseColumnNames="dic_property_type_id"
+                constraintName="entity_property_front2_fk"
+                referencedTableName="dic_params_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-monitoring_object_property-monitoring_object_property_fk"
+               author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_property"
+                baseColumnNames="entity_id"
+                constraintName="monitoring_object_property_fk"
+                referencedTableName="monitoring_object_entity"
+                referencedColumnNames="id"
+                deleteCascade="true"/>
+    </changeSet>
+</databaseChangeLog>
