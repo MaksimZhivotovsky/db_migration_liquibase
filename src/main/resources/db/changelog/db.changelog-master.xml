@@ -13,6 +13,7 @@
     <include file="v.1.0.0/create-indexes.xml" relativeToChangelogFile="true"/>
     <include file="v.1.0.0/create-triggers.xml" relativeToChangelogFile="true"/>
     <include file="v.1.0.0/create-procedures.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/insert-to-tables.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>

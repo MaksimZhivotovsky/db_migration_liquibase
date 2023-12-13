@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-dic_params_type" author="TestUsers">
+        <sql>
+            INSERT INTO public.dic_params_type (id, "name", codename, mask)
+            VALUES
+            (1,'Строка', 'String', null),
+            (2,'IP-адрес', 'IP', null),
+            (3,'Целое число', 'Integer', null),
+            (4,'Вещественное число', 'Double', null),
+            (5,'Список', 'List', null),
+            (6,'Логический', 'Boolean', null),
+            (7,'Дата', 'Date', null),
+            (8,'Время', 'Time', null),
+            (9,'Адрес', 'Address', null),
+            (10, 'Дата и время', 'DateTime', 'gggg-MM-dd hh:mm:ss');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
