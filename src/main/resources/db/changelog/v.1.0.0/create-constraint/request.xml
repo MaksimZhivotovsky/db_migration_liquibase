@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-request-request_priority_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="request"
+                baseColumnNames="request_priority"
+                constraintName="request_priority_fk"
+                referencedTableName="request_priority"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-request-request_source_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="request"
+                baseColumnNames="source_type_id"
+                constraintName="request_source_fk"
+                referencedTableName="request_source_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-request-request_type_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="request"
+                baseColumnNames="status"
+                constraintName="request_type_fk"
+                referencedTableName="request_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

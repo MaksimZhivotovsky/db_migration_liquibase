@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-rule_request_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "rule_sc" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-rule_request_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.rule_sc (
+            id bigserial NOT NULL,
+            "name" varchar NOT NULL,
+            entity_sc_id int8 NULL,
+            entity_property_sc_id int8 NULL,
+            limit_value float8 NULL,
+            client_id int8 NULL,
+            date_creation timestamp NOT NULL,
+            date_update timestamp NULL,
+            entity_sm_id int8 NULL,
+            entity_property_sm_id int8 NULL,
+            limit_entity_sc_id int8 NULL,
+            limit_property_sc_id int8 NULL,
+            measure_unit_id int8 NULL,
+            period_min int8 NULL,
+            is_all_value bool NOT NULL DEFAULT false,
+            is_abs bool NOT NULL DEFAULT true,
+            name_pattern varchar NULL,
+            is_archive bool NOT NULL DEFAULT false,
+            CONSTRAINT rule_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -34,7 +34,6 @@
     <include file="create-table/entity_property_value.xml" relativeToChangelogFile="true"/>
     <include file="create-table/entity_relation.xml" relativeToChangelogFile="true"/>
     <include file="create-table/entity_relation_type.xml" relativeToChangelogFile="true"/>
-    <include file="create-table/entity_type.xml" relativeToChangelogFile="true"/>
     <include file="create-table/entity_type_order.xml" relativeToChangelogFile="true"/>
     <include file="create-table/event.xml" relativeToChangelogFile="true"/>
     <include file="create-table/event_property.xml" relativeToChangelogFile="true"/>
@@ -55,6 +54,65 @@
     <include file="create-table/monitoring_object_last_value.xml" relativeToChangelogFile="true"/>
     <include file="create-table/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
     <include file="create-table/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_property_changes.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_settings_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_status.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_user_customization.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_period.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_relation_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_system_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_system_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_widget.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_widget_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/notification_mail_attachment.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/notification_mail_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/organization_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/organization_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/organization_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/report.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/report_generation.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/report_schedule_history.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/report_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_changelog.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_comment.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_file.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_priority.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_role.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_source_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/role_grant.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/role_grant_organization.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/role_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_addressees.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_notification.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_notification_level.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_notification_status.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_notification_subject.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_notify_organization.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_request.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_request_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/service_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/services_total.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/subject_action.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/subject_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/support_group_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/technical_interval.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/technical_interval_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/technical_interval_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/threshold_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_default_customization.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_last_active.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_session_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_support_group.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/rule_request_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/user_status.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
 
@@ -77,7 +135,7 @@
 
 <!--<changeSet id="add-comment-table-formula_last_argument_calculated" author="M_Zhivotovskiy">-->
 <!--<sql splitStatements="true">-->
-<!--    COMMENT ON COLUMN public.formula_last_argument_calculated.id IS 'ID записи';-->
+<!--    COMMENT ON COLUMN public.formula_last_argument_calculated.id IS 'записи';-->
 <!--</sql>-->
 <!--</changeSet>-->
 

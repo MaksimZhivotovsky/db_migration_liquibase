@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-report" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "report" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-report" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.report (
+            id bigserial NOT NULL,
+            report_type varchar NULL,
+            report_name varchar NULL,
+            header_text varchar NULL,
+            schedule varchar NULL,
+            report_period varchar NULL,
+            created_by int8 NULL,
+            last_modified_by int8 NULL,
+            created timestamptz NULL DEFAULT now(),
+            last_modified timestamptz NULL DEFAULT now(),
+            thresholds_enabled bool NULL,
+            tech_break_enabled bool NULL,
+            enable_hierarchy bool NULL,
+            rows_config varchar NULL,
+            columns_config varchar NULL,
+            client_id int8 NULL,
+            additional_parameters varchar NULL,
+            preview_status varchar NULL,
+            preview_updated timestamptz NULL,
+            child_report_ids varchar NULL,
+            report_type_id int2 NULL,
+            CONSTRAINT report_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-report" author="M_Zhivotovskiy">
+    <sql splitStatements="true">
+        COMMENT ON COLUMN public.report.id IS 'ID отчета';
+        COMMENT ON COLUMN public.report.report_type IS 'Тип отчета';
+        COMMENT ON COLUMN public.report.report_name IS 'Имя отчета';
+        COMMENT ON COLUMN public.report.header_text IS 'Шапка';
+        COMMENT ON COLUMN public.report.schedule IS 'Конфигурация отправки по расписанию (JSON)';
+        COMMENT ON COLUMN public.report.report_period IS 'Период отчета (JSON)';
+        COMMENT ON COLUMN public.report.created_by IS 'Создавший пользователь';
+        COMMENT ON COLUMN public.report.last_modified_by IS 'Пользователь внесший последние изменения';
+        COMMENT ON COLUMN public.report.created IS 'Время создания';
+        COMMENT ON COLUMN public.report.last_modified IS 'Время последнего изменения';
+        COMMENT ON COLUMN public.report.thresholds_enabled IS 'Показывать ли пороги';
+        COMMENT ON COLUMN public.report.tech_break_enabled IS 'Исключать ли значения из тех. перерывов.';
+        COMMENT ON COLUMN public.report.enable_hierarchy IS 'Включать ли иерархию объектов мониторинга';
+        COMMENT ON COLUMN public.report.rows_config IS 'Конфигурация строк';
+        COMMENT ON COLUMN public.report.columns_config IS 'Конфигурация столбцов';
+        COMMENT ON COLUMN public.report.client_id IS 'ID клиента';
+        COMMENT ON COLUMN public.report.additional_parameters IS 'Дополнительные параметры отчета (JSON)';
+        COMMENT ON COLUMN public.report.preview_status
+        IS 'Статус данных для preview (для определенных типов отчетов хранящих данные preview в БД)';
+        COMMENT ON COLUMN public.report.preview_updated IS
+        'Время последнего обновления данных для preview (для определенных типов отчетов хранящих данные preview в БД)';
+        COMMENT ON COLUMN public.report.child_report_ids IS 'Дочерние отчеты';
+    </sql>
+    </changeSet>
+</databaseChangeLog>

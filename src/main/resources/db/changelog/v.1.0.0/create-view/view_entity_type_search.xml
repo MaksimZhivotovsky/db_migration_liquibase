@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-view-view_entity_type_search" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            drop view IF EXISTS public.view_entity_type_search;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-view-view_entity_type_search" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE VIEW public.view_entity_type_search
+            AS SELECT s.id,
+            s.entity_type_id,
+            s.entity_name,
+            s.subtype,
+            ( SELECT e2.id
+            FROM entity e2
+            WHERE e2.entity_type_id = s.subtype AND e2.external_id = s.element AND e2.adapter_id = s.adapter_id
+            LIMIT 1) AS type_id
+            FROM ( SELECT e.id,
+            e.entity_type_id,
+            e.adapter_id,
+            e.name AS entity_name,
+            epv.value,
+            ep.name,
+            element.value::text::bigint AS element,
+            CASE
+            WHEN e.entity_type_id = 2 THEN 10
+            WHEN e.entity_type_id = 3 THEN 5
+            ELSE 11
+            END AS subtype
+            FROM entity e
+            JOIN entity_property_value epv ON e.id = epv.entity_id
+            JOIN entity_property ep ON epv.property_id = ep.id,
+            LATERAL jsonb_array_elements(epv.value::jsonb) element(value)
+            WHERE epv.value::text ~~ '[%'::text AND (e.entity_type_id = ANY (ARRAY[2::bigint, 3::bigint, 4::bigint])) AND (ep.name::text = ANY (ARRAY['deviceTypeId'::character varying::text, 'pluginObjectTypeId'::character varying::text, 'pluginIndicatorTypeId'::character varying::text]))) s;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

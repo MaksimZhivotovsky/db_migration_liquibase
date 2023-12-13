@@ -8,19 +8,18 @@
     <changeSet id="create-function-compare_as_numbers_or_strings" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.compare_as_numbers_or_strings(in_1 text, in_2 text)
-             RETURNS boolean
-             LANGUAGE plpgsql
+            RETURNS boolean
+            LANGUAGE plpgsql
             AS $function$
-                        begin
-                if textregexeq($1,'^-?[[:digit:]]+(\.[[:digit:]]+)?$')
-                        and textregexeq($2,'^-?[[:digit:]]+(\.[[:digit:]]+)?$')
-                        then return $1::double precision = $2::double precision;
-                        else return $1 = $2;
-                        end if;
-                        end;
-                        $function$
-                        ;
-
+            begin
+            if textregexeq($1,'^-?[[:digit:]]+(\.[[:digit:]]+)?$')
+            and textregexeq($2,'^-?[[:digit:]]+(\.[[:digit:]]+)?$')
+            then return $1::double precision = $2::double precision;
+            else return $1 = $2;
+            end if;
+            end;
+            $function$
+            ;
         </sql>
     </changeSet>
 

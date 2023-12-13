@@ -6,12 +6,13 @@
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <include file="v.1.0.0/create-tables.xml" relativeToChangelogFile="true"/>
-<!--    <include file="v.1.0.0/create-constraints.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="v.1.0.0/create-functions.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="v.1.0.0/create-indexes.xml" relativeToChangelogFile="true"/>-->
+    <include file="v.1.0.0/create-constraints.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-types.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-functions.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-views.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-indexes.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-triggers.xml" relativeToChangelogFile="true"/>
+    <include file="v.1.0.0/create-procedures.xml" relativeToChangelogFile="true"/>
 
-<!--    <include file="v.1.0.0/create-triggers.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="v.1.0.0/create-procedures.xml" relativeToChangelogFile="true"/>-->
-<!--    <include file="v.1.0.0/create-types.xml" relativeToChangelogFile="true"/>-->
 
 </databaseChangeLog>

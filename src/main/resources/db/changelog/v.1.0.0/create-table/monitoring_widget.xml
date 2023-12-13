@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_widget" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_widget" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_widget" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_widget (
+            id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+            object_id int8 NOT NULL,
+            user_id varchar NOT NULL,
+            client_id int8 NULL,
+            widget_type varchar NOT NULL,
+            widget_name varchar NOT NULL,
+            unit_id int8 NULL,
+            timestamp_from timestamp NULL,
+            timestamp_to timestamp NULL,
+            position_x int8 NULL,
+            position_y int8 NULL,
+            period_id int8 NULL,
+            width int8 NULL,
+            height int8 NULL,
+            filter_object_types varchar NULL,
+            filter_object_measure_unit int8 NULL,
+            filter_objects varchar NULL,
+            filter_property_types varchar NULL,
+            filter_property_measure_unit int8 NULL,
+            created timestamp NULL,
+            modified timestamp NULL,
+            show_thresholds bool NULL,
+            multiplier float8 NULL,
+            display_unit_id int8 NULL,
+            customization_id int8 NULL,
+            show_measure_unit bool NOT NULL DEFAULT true,
+            show_tech_breaks bool NULL,
+            multiple_config varchar NULL,
+            CONSTRAINT monitoring_widget_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_widget" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            COMMENT ON COLUMN public.monitoring_widget.id IS 'ID виджета';
+            COMMENT ON COLUMN public.monitoring_widget.object_id
+            IS 'ID объекта мониторинга к которому относится виджет';
+            COMMENT ON COLUMN public.monitoring_widget.user_id IS 'Keycloak ID пользователя';
+            COMMENT ON COLUMN public.monitoring_widget.client_id IS 'ID клиента';
+            COMMENT ON COLUMN public.monitoring_widget.widget_type IS 'Тип виджета';
+            COMMENT ON COLUMN public.monitoring_widget.widget_name IS 'Имя виджета';
+            COMMENT ON COLUMN public.monitoring_widget.unit_id IS 'ID единицы измерения';
+            COMMENT ON COLUMN public.monitoring_widget.timestamp_from IS 'Начало периода данных';
+            COMMENT ON COLUMN public.monitoring_widget.timestamp_to IS 'Конец периода данных';
+            COMMENT ON COLUMN public.monitoring_widget.position_x IS 'Координата X';
+            COMMENT ON COLUMN public.monitoring_widget.position_y IS 'Координата Y';
+            COMMENT ON COLUMN public.monitoring_widget.period_id IS 'Id периода времени получения данных';
+            COMMENT ON COLUMN public.monitoring_widget.width IS 'Ширина';
+            COMMENT ON COLUMN public.monitoring_widget.height IS 'Высота';
+            COMMENT ON COLUMN public.monitoring_widget.filter_object_types IS 'Типы объектов';
+            COMMENT ON COLUMN public.monitoring_widget.filter_object_measure_unit IS 'Ед. изм. объектов';
+            COMMENT ON COLUMN public.monitoring_widget.filter_objects IS 'Объекты как фильтры для выбираемых параметров';
+            COMMENT ON COLUMN public.monitoring_widget.filter_property_types IS 'Тип параметров';
+            COMMENT ON COLUMN public.monitoring_widget.filter_property_measure_unit IS 'Ед. изм. параметров';
+            COMMENT ON COLUMN public.monitoring_widget.created IS 'Время создания';
+            COMMENT ON COLUMN public.monitoring_widget.modified IS 'Время изменения';
+            COMMENT ON COLUMN public.monitoring_widget.show_thresholds IS 'Показывать ли пороги';
+            COMMENT ON COLUMN public.monitoring_widget.multiplier IS 'Коэффициент перевода в единицу отображения виджета';
+            COMMENT ON COLUMN public.monitoring_widget.display_unit_id IS 'Id единицы измерения отображения';
+            COMMENT ON COLUMN public.monitoring_widget.customization_id IS 'ID кастомизации';
+            COMMENT ON COLUMN public.monitoring_widget.show_measure_unit IS 'Показывать ли единицы измерения';
+            COMMENT ON COLUMN public.monitoring_widget.show_tech_breaks IS 'Показывать ли тех. перерывы';
+            COMMENT ON COLUMN public.monitoring_widget.multiple_config IS 'Конфигурация множественного создания';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

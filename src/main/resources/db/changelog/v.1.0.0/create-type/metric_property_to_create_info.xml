@@ -2,9 +2,16 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
-    <changeSet id="create-type-metric_property_to_create_info" author="M_Zhivotovskiy">
+<!--    <changeSet id="drop-type-metric_property_to_create_info" author="M_Zhivotovskiy">-->
+<!--        <sql splitStatements="false">-->
+<!--            DROP TYPE IF EXISTS "metric_property_to_create_info" CASCADE;-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+
+    <changeSet id="create-type-metric_property_to_create_info1" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE TYPE public.metric_property_to_create_info AS (
                 prop_name varchar,
@@ -16,7 +23,6 @@
                 assigned_object_id int8,
                 assigned_object_name varchar,
                 entity_map_id int8);
-
         </sql>
     </changeSet>
 

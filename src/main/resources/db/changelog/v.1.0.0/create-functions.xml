@@ -18,5 +18,6 @@
     <include file="create-function/add_metrics_properties_to_devices_v2.xml" relativeToChangelogFile="true"/>
     <include file="create-function/monitoring_id_by_relation_id.xml" relativeToChangelogFile="true"/>
     <include file="create-function/relation_id_by_monitoring_id.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/get_element_list.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

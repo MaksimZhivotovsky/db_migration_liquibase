@@ -13,6 +13,6 @@
                 constraintName="monitoring_object_properties_order_item_fk"
                 referencedTableName="monitoring_object_user_customization"
                 referencedColumnNames="id"
-                deleteCascade="true"/>
+                onDelete="CASCADE"/>
     </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-threshold_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "threshold_sc" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-threshold_sc" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.threshold_sc (
+            id bigserial NOT NULL,
+            rule_id int8 NOT NULL,
+            threshold_level_id int8 NULL,
+            threshold_value float8 NULL,
+            comparison_operator_id int4 NULL,
+            color_id int4 NULL,
+            date_creation timestamp NOT NULL,
+            date_update timestamp NULL,
+            description varchar NULL,
+            CONSTRAINT threshold_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

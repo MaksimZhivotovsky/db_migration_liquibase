@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-request_source_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "request_source_type" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="drop-sequence-request_sourse_type_id_seq" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP SEQUENCE IF EXISTS "request_sourse_type_id_seq" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-request_sourse_type_id_seq" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE SEQUENCE public.request_sourse_type_id_seq
+            INCREMENT BY 1
+            MINVALUE 1
+            MAXVALUE 9223372036854775807
+            START 1
+            CACHE 1
+            NO CYCLE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-request_source_type" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.request_source_type (
+            id int2 NOT NULL DEFAULT nextval('request_sourse_type_id_seq'::regclass),
+            "name" varchar NULL,
+            rus_name varchar NULL,
+            CONSTRAINT request_sourse_type_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -12,7 +12,7 @@
                 constraintName="formula_fk"
                 referencedTableName="monitoring_object_property"
                 referencedColumnNames="id"
-                deleteCascade="true"/>
+                onDelete="CASCADE"/>
     </changeSet>
 
     <changeSet id="create-constrain-formula-formula_ftype_fk" author="M_Zhivotovskiy">

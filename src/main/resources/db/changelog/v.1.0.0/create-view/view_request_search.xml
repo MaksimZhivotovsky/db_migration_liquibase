@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-view-view_request_search" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            drop view IF EXISTS public.view_request_search;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-view-view_request_search" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE VIEW public.view_request_search
+            AS SELECT s.id,
+            s.request_number,
+            s.source_type_id,
+            s.source,
+            s.description,
+            s.entity_sc_id,
+            s.relation_id,
+            s.client_id,
+            s.object_name,
+            s.date_creation,
+            s.date_close,
+            s.time_in_work_seconds,
+            s.status,
+            s.status_name,
+            s.status_color,
+            s.request_priority,
+            s.priority_name,
+            s.priority_color,
+            s.author,
+            s.executor,
+            s.broken_entities,
+            s.executor_id,
+            s.user_id,
+            s.broken_entities_names,
+            s.time_solution_seconds,
+            CASE
+            WHEN s.time_solution_seconds IS NULL THEN NULL::integer
+            ELSE 100 - s.time_in_work_seconds * 100 / s.time_solution_seconds
+            END AS sla,
+            s.incident_ids
+            FROM ( SELECT r.id,
+            r.request_number,
+            r.source_type_id,
+            CASE
+            WHEN r.source_type_id IS NOT NULL THEN ( SELECT rsource.rus_name
+            FROM request_source_type rsource
+            WHERE rsource.id = r.source_type_id)
+            ELSE NULL::character varying
+            END AS source,
+            r.description,
+            r.entity_sc_id,
+            mor.id AS relation_id,
+            r.client_id,
+            moe.name AS object_name,
+            r.date_creation,
+            r.date_close,
+            CASE
+            WHEN r.date_close IS NULL THEN date_part('epoch'::text, now() - r.date_creation::timestamp with time zone)::integer
+            ELSE date_part('epoch'::text, r.date_close - r.date_creation)::integer
+            END AS time_in_work_seconds,
+            r.status,
+            ( SELECT rs.rusname
+            FROM request_type rs
+            WHERE rs.id = r.status) AS status_name,
+            ( SELECT cp_1.value
+            FROM request_type rs
+            JOIN colour_palette cp_1 ON rs.color_id = cp_1.id
+            WHERE rs.id = r.status) AS status_color,
+            r.request_priority,
+            ( SELECT rp.rus_name
+            FROM request_priority rp
+            WHERE rp.id = r.request_priority) AS priority_name,
+            cp.value AS priority_color,
+            (((COALESCE(author_user.last_name, ''::character varying)::text || ' '::text) || COALESCE(author_user.first_name, ''::character varying)::text) || ' '::text) || COALESCE(author_user.middle_name, ''::character varying)::text AS author,
+            (((COALESCE(executor_user.last_name, ''::character varying)::text || ' '::text) || COALESCE(executor_user.first_name, ''::character varying)::text) || ' '::text) || COALESCE(executor_user.middle_name, ''::character varying)::text AS executor,
+            r.broken_entities,
+            r.executor_id,
+            r.user_id,
+            r.incident_ids,
+            get_element_list(r.broken_entities, 'name'::text) AS broken_entities_names,
+            CASE
+            WHEN mop1.value IS NULL THEN NULL::integer
+            ELSE date_part('epoch'::text, mop1.value::time without time zone)::integer
+            END AS time_solution_seconds
+            FROM request r
+            JOIN colour_palette cp ON cp.id = r.color_id
+            LEFT JOIN monitoring_object_entity moe ON moe.id = r.request_entity_id
+            LEFT JOIN monitoring_object_relation mor ON mor.entity_id_2 = r.request_entity_id
+            LEFT JOIN user_sc author_user ON author_user.id = r.user_id
+            LEFT JOIN user_sc executor_user ON executor_user.id = r.executor_id
+            LEFT JOIN rule_request rr ON rr.id = r.rule_id
+            LEFT JOIN monitoring_object_property mop1 ON mop1.id = rr.time_solution_property_sc_id) s;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

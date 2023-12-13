@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_user_customization" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_user_customization" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_user_customization" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_user_customization (
+            id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+            user_id varchar NOT NULL,
+            customization_name varchar NOT NULL,
+            last_updated timestamp NOT NULL DEFAULT now(),
+            client_id int8 NULL,
+            created timestamp NULL,
+            monitoring_object_id int8 NULL,
+            created_by int8 NULL,
+            last_modified_by int8 NULL,
+            all_users bool NULL,
+            CONSTRAINT monitoring_object_user_customization_pk PRIMARY KEY (id),
+            CONSTRAINT monitoring_object_user_customization_un UNIQUE (created_by, monitoring_object_id, customization_name)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_object_user_customization" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            COMMENT ON COLUMN public.monitoring_object_user_customization.id IS 'ID кастомизации';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.user_id IS 'ID пользователя';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.customization_name IS 'Имя кастомизации';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.last_updated IS 'Время последнего обновления';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.client_id IS 'ID клиента';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.created IS 'Время создания';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.created_by IS 'ID создавшего пользователя';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.last_modified_by IS 'ID последнего изменявшего пользователя';
+            COMMENT ON COLUMN public.monitoring_object_user_customization.all_users IS 'Доступна ли всем пользователям';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

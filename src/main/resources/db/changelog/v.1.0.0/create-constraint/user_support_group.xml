@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-user_support_group-user_support_group1_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="user_support_group"
+                baseColumnNames="user_id"
+                constraintName="user_support_group1_fk"
+                referencedTableName="user_sc"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-user_support_group-user_support_group_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="user_support_group"
+                baseColumnNames="support_group_id"
+                constraintName="user_support_group_fk"
+                referencedTableName="support_group_sc"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -6,7 +6,7 @@
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <changeSet id="create-function-update_object_status_on_incident_create_or_update" author="M_Zhivotovskiy">
-        <sql>
+        <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.update_object_status_on_incident_create_or_update()
              RETURNS trigger
              LANGUAGE plpgsql

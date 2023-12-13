@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_widget_element" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_widget_element" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_widget_element" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_widget_element (
+            id int8 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE),
+            widget_id int8 NOT NULL,
+            object_id int8 NULL,
+            property_id int8 NULL,
+            color_id int8 NULL,
+            place int8 NULL,
+            created timestamp NULL,
+            modified timestamp NULL,
+            CONSTRAINT monitoring_widget_object_pk PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_widget_element" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            COMMENT ON COLUMN public.monitoring_widget_element.id IS 'ID элемента';
+            COMMENT ON COLUMN public.monitoring_widget_element.widget_id IS 'ID виджета';
+            COMMENT ON COLUMN public.monitoring_widget_element.object_id
+            IS 'ID объекта мониторинга по которому строится виджет';
+            COMMENT ON COLUMN public.monitoring_widget_element.property_id
+            IS 'ID параметра по которому строится виджет';
+            COMMENT ON COLUMN public.monitoring_widget_element.color_id IS 'ID цвета для отображения';
+            COMMENT ON COLUMN public.monitoring_widget_element.place IS 'Порядковый номер';
+            COMMENT ON COLUMN public.monitoring_widget_element.created IS 'Время создания';
+            COMMENT ON COLUMN public.monitoring_widget_element.modified IS 'Время обновления';
+        </sql>
+    </changeSet>
+</databaseChangeLog>

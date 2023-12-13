@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-notification_mail_attachment-notification_mail_attachment_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="notification_mail_attachment"
+                baseColumnNames="notification_id"
+                constraintName="notification_mail_attachment_fk"
+                referencedTableName="notification_mail_sc"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_status" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_status" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_status" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_status (
+            id bigserial NOT NULL,
+            entity_sc_id int8 NULL,
+            priority int8 NULL,
+            color_id int8 NULL,
+            date_cause timestamptz NOT NULL,
+            date_creation timestamptz NOT NULL,
+            CONSTRAINT entity_sc_id_un UNIQUE (entity_sc_id),
+            CONSTRAINT monitoring_object_status_pkey PRIMARY KEY (id)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_object_status" author="M_Zhivotovskiy">
+    <sql splitStatements="true">
+        COMMENT ON COLUMN public.monitoring_object_status.id IS 'ID записи';
+        COMMENT ON COLUMN public.monitoring_object_status.entity_sc_id IS 'ID объекта мониторинга';
+        COMMENT ON COLUMN public.monitoring_object_status.priority IS 'Приоритет';
+        COMMENT ON COLUMN public.monitoring_object_status.color_id IS 'ID цвета';
+        COMMENT ON COLUMN public.monitoring_object_status.date_cause IS 'Время создания';
+        COMMENT ON COLUMN public.monitoring_object_status.date_creation IS 'Время изменения';
+    </sql>
+    </changeSet>
+</databaseChangeLog>

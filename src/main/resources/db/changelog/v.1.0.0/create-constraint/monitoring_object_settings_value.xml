@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-monitoring_object_settings_value-monitoring_object_settings2_value_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_settings_value"
+                baseColumnNames="colour_id"
+                constraintName="monitoring_object_settings2_value_fk"
+                referencedTableName="colour_palette"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

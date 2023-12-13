@@ -16,5 +16,9 @@
     <include file="create-index/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
     <include file="create-index/monitoring_object_last_value.xml" relativeToChangelogFile="true"/>
     <include file="create-index/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-index/monitoring_object_property_changes.xml" relativeToChangelogFile="true"/>
+    <include file="create-index/monitoring_object_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-index/notification_mail_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-index/request.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

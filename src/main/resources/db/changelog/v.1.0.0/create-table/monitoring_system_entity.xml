@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_system_entity" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_system_entity" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_system_entity" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_system_entity (
+            id uuid NOT NULL DEFAULT gen_random_uuid(),
+            "name" varchar(256) NULL,
+            dic_element_id int8 NULL,
+            date_creation timestamp NOT NULL DEFAULT now(),
+            client_id int8 NULL,
+            status varchar NULL,
+            modified timestamp NULL,
+            CONSTRAINT monitoring_system_entity_pkey PRIMARY KEY (id),
+            CONSTRAINT monitoring_system_entity_un UNIQUE (name)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-comment-table-monitoring_system_entity" author="M_Zhivotovskiy">
+    <sql splitStatements="true">
+        COMMENT ON COLUMN public.monitoring_system_entity.dic_element_id IS 'ID элемента справочника';
+    </sql>
+    </changeSet>
+</databaseChangeLog>

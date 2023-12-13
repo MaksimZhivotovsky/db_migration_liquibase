@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-threshold_sc-threshold_sc_comparison_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="threshold_sc"
+                baseColumnNames="comparison_operator_id"
+                constraintName="threshold_sc_comparison_fk"
+                referencedTableName="comparison_operator"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-threshold_sc-threshold_sc_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="threshold_sc"
+                baseColumnNames="rule_id"
+                constraintName="threshold_sc_fk"
+                referencedTableName="rule_sc"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

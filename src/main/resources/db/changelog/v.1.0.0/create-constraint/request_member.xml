@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-request_member-request_member_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="request_member"
+                baseColumnNames="role_id"
+                constraintName="request_member_fk"
+                referencedTableName="request_role"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-request_member-request_patricipant_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="request_member"
+                baseColumnNames="request_id"
+                constraintName="request_patricipant_fk"
+                referencedTableName="request"
+                referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

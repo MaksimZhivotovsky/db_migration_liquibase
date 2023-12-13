@@ -17,5 +17,18 @@
     <include file="create-trigger/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
     <include file="create-trigger/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
     <include file="create-trigger/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_settings_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_user_customization.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_system_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_system_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_widget.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_widget_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/organization_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/organization_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/request.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/request_priority.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/request_type.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/service_sc.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

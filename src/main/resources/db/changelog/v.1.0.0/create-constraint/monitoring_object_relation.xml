@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-monitoring_object_relation-entity_relation_front_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_relation"
+                baseColumnNames="relation_type_id"
+                constraintName="entity_relation_front_fk"
+                referencedTableName="monitoring_relation_type"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-monitoring_object_relation-monitoring_object_relation_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_relation"
+                baseColumnNames="entity_id_1"
+                constraintName="monitoring_object_relation_fk"
+                referencedTableName="monitoring_object_entity"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+
+    </changeSet>
+
+    <changeSet id="create-constrain-monitoring_object_relation-monitoring_object_relation_fk_1" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="monitoring_object_relation"
+                baseColumnNames="entity_id_2"
+                constraintName="monitoring_object_relation_fk_1"
+                referencedTableName="monitoring_object_entity"
+                referencedColumnNames="id"
+                deleteCascade="true"/>
+    </changeSet>
+</databaseChangeLog>

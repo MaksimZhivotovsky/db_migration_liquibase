@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-technical_interval_entity-technical_interval_entity_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="technical_interval_entity"
+                baseColumnNames="technical_interval_id"
+                constraintName="technical_interval_entity_fk"
+                referencedTableName="technical_interval"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

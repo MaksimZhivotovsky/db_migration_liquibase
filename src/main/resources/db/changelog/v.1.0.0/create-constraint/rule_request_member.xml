@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-constrain-rule_request_member-rule_request_member_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="rule_request_member"
+                baseColumnNames="role_id"
+                constraintName="rule_request_member_fk"
+                referencedTableName="request_role"
+                referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-constrain-rule_request_member-rule_request_patricipant_fk" author="M_Zhivotovskiy">
+        <addForeignKeyConstraint
+                baseTableName="rule_request_member"
+                baseColumnNames="rule_id"
+                constraintName="rule_request_patricipant_fk"
+                referencedTableName="rule_request"
+                referencedColumnNames="id"
+                onDelete="CASCADE"/>
+    </changeSet>
+</databaseChangeLog>

@@ -29,5 +29,36 @@
     <include file="create-constraint/monitoring_object_entity.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/monitoring_object_properties_order_item.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/monitoring_object_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_settings_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_system_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_system_entity_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_widget.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_widget_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/notification_mail_attachment.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/organization_property.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/organization_property_address.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/request.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/request_changelog.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/request_comment.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/request_file.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/request_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/role_grant.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/role_grant_organization.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_addressees.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_notification.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_notification_level.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_notification_status.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_notification_subject.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_notify_organization.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_request.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/rule_request_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/technical_interval_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/technical_interval_member.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/threshold_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/user_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/user_session_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/user_support_group.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

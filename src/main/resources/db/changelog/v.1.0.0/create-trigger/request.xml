@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-trigger-request-update_request_modified"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE TRIGGER update_request_modified
+            BEFORE UPDATE OR INSERT ON public.request
+            FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

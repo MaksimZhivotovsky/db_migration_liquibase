@@ -8,12 +8,12 @@
     <changeSet id="create-function-update_modified_column" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION update_modified_column()
-            RETURNS TRIGGER AS $$
+            RETURNS TRIGGER AS '
                         BEGIN
                 NEW.modified = now();
                         RETURN NEW;
                         END;
-            $$ language 'plpgsql';
+            ' language 'plpgsql';
         </sql>
     </changeSet>
 
