@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-dic_controller" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.dic_controller ("name", url, url_redirect_front, subscribe_all_dictionary, subscribe_all_element, system_name)
+            VALUES('Системы мониторинга', 'http://adapter-settings-manager:8105/api/monitoring-system-object/', 'monitoring-systems', false, false, ''),
+                  ('Адаптеры Мониторинга', 'http://adapter-settings-manager:8105/api/monitoring-adapter-object/', 'monitoring-adapters', false, false, ''),
+                  ('Организации', 'http://sc20-customer-portal-back:8085/api/organization/', 'organizations', false, false, 'ORGANIZATION'),
+                  ('Объекты мониторинга', 'http://sc20-customer-portal-back:8085/api/monitoring_object/', 'monitoring-objects', false, true, '');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-on_archive_monitoring_object_relation" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "on_archive_monitoring_object_relation";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-on_archive_monitoring_object_entity" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_archive_monitoring_object_relation()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        begin
+
+                if TG_OP = 'UPDATE' then
+                    if (NEW.entity_id_1 is null)
+                    then
+                        update monitoring_object_relation
+                        set relation_type_id = 2
+                        where id = NEW.id and relation_type_id  != 2;
+                    else
+                    update monitoring_object_relation
+                    set relation_type_id = 1
+                    where id = NEW.id and relation_type_id  != 1;
+                    end if;
+                    end if;
+
+                if TG_OP = 'UPDATE' and new.is_archive = true then
+                    delete from monitoring_object_relation where id = new.id;
+                    elseif TG_OP = 'DELETE' then
+                    INSERT INTO public.monitoring_object_relation_archive
+            (id, entity_id_1, entity_id_2, relation_type_id, direction, is_archive, relation_id_1, organization_id)
+            VALUES(old.id, old.entity_id_1, old.entity_id_2, old.relation_type_id, old.direction, true, old.relation_id_1, old.organization_id);
+
+                    end if;
+
+                    RETURN NEW;
+                    END;
+                    $function$
+                    ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

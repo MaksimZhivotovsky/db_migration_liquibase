@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-formula_type" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.formula_type
+                (id, "type", "name", rusname, units)
+            VALUES	(1, 'Percent', 'Percent', 'Процент', '%'),
+                      (2, 'Division', 'Division', 'Отношение', null),
+                      (3, 'Sum', 'Sum', 'Сумма', null),
+                      (4, 'Difference', 'Difference', 'Разность', null),
+                      (5, 'Arithmetic_Mean', 'Arithmetic mean', 'Среднее арифметическое', null),
+                      (6, 'Median', 'Median', 'Медиана', null),
+                      (7, 'Max', 'Max', 'Максимальное значение', null),
+                      (8, 'Min', 'Min', 'Минимальное значение', null),
+                      (9, 'Assign', 'Assign', 'Присваивание', null);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_property_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_property_archive" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_property_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_property_archive (
+               id int8 NOT NULL,
+               "name" varchar(128) NULL,
+               value varchar NULL,
+               dic_property_type_id int8 NULL,
+               description varchar(512) NULL,
+               entity_id int8 NULL,
+               dic_parameter_id int8 NULL,
+               property_map_id int8 NULL,
+               is_map bool NOT NULL DEFAULT false,
+               dic_type_id int8 NULL,
+               entity_map_id int8 NULL,
+               is_require bool NOT NULL DEFAULT false,
+               dic_value_id int8 NULL,
+               is_measured bool NOT NULL DEFAULT false,
+               measure_unit_id int8 NULL,
+               system_name varchar NULL,
+               is_formula bool NOT NULL DEFAULT false,
+               is_archive bool NOT NULL DEFAULT false,
+               default_colour int2 NULL,
+               created timestamp NULL,
+               modified timestamp NULL,
+               is_hide bool NOT NULL DEFAULT false,
+               address_id int8 NULL
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

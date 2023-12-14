@@ -20,4 +20,13 @@
             FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
         </sql>
     </changeSet>
+
+    <changeSet id="create-trigger-monitoring_widget-on_delete_widget_trigger" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            create trigger on_delete_widget_trigger after
+                delete
+                on
+                    public.monitoring_widget for each row execute PROCEDURE on_archive_widget();
+        </sql>
+    </changeSet>
 </databaseChangeLog>

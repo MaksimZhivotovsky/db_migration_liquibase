@@ -30,5 +30,8 @@
     <include file="create-trigger/request_priority.xml" relativeToChangelogFile="true"/>
     <include file="create-trigger/request_type.xml" relativeToChangelogFile="true"/>
     <include file="create-trigger/service_sc.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_entity_archive.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_property_archive.xml" relativeToChangelogFile="true"/>
+    <include file="create-trigger/monitoring_object_relation_archive.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

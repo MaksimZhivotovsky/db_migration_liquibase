@@ -5,6 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-function-to_safe_json_array_varchar" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "to_safe_json_array_varchar";
+        </sql>
+    </changeSet>
+
     <changeSet id="create-function-to_safe_json_array_varchar" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.to_safe_json_array_varchar(in_1 character varying)

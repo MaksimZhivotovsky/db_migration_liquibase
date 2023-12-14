@@ -6,6 +6,31 @@
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <include file="insert-to-table/dic_params_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/dic_entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/entity_type_order.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/dic_entity_element.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/dic_controller.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/dic_subscribe_controller.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/colour_palette.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/entity_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/entity_relation_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/monitoring_relation_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/monitoring_period.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/formula_type.xml" relativeToChangelogFile="true"/>
+<!--    <include file="insert-to-table/comparison_operator.xml" relativeToChangelogFile="true"/>-->
+    <include file="insert-to-table/request_priority.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/request_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/incident_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/rule_request_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/request_role.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/request_source_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/subject_type.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/subject_action.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/user_status.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/grant_sc.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/role_grant.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/customization_to_user.xml" relativeToChangelogFile="true"/>
+    <include file="insert-to-table/report_type.xml" relativeToChangelogFile="true"/>
 
 
 </databaseChangeLog>

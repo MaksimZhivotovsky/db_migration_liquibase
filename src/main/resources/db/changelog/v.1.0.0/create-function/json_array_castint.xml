@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-json_array_castint" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "json_array_castint";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-json_array_castint" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.json_array_castint(json)
+             RETURNS integer[]
+             LANGUAGE sql
+             IMMUTABLE
+            AS $function$
+                        SELECT array_agg(x)::int[] || ARRAY[]::int[] FROM json_array_elements_text($1) t(x);
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

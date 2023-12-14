@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-get_all_realations" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "get_all_realations";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-get_all_realations" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.get_all_realations(organizationids character varying)
+             RETURNS TABLE(relationid bigint, entityid bigint, entityname character varying, is_hide boolean, colorvalue character varying, organizationid bigint, parentid bigint, parentrelationid bigint, elementid bigint, dictypeid bigint, plaginname character varying)
+             LANGUAGE sql
+             PARALLEL SAFE
+            AS $function$
+                        select mor.id as relationId, mor.entity_id_2 as entityId,  moe."name" as entityName,
+                               moe.is_hide, cp.value as colorvalue,
+                               moe.client_id as organizationId, mor.entity_id_1 as parentId, mor.relation_id_1 as parentRelation,
+                               moe.dic_element_id as elementid, dee.entity_type_id as dictypeid, pp."name" as plaginname
+                        from monitoring_object_relation mor
+                                 join monitoring_object_entity moe on moe.client_id = any(string_to_array( organizationIds, ',')::int8[] )
+                                 left join monitoring_object_status mos on mos.entity_sc_id = moe.id
+                                 inner join dic_entity_element dee on dee.id = moe.dic_element_id
+                                 left join colour_palette cp on cp.id = mos.color_id
+                                 left join entity pp on pp.id = moe.plugin_entity_map_id
+                        where moe.is_archive = false and mor.entity_id_2 = moe.id;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

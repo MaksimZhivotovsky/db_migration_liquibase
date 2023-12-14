@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-on_archive_widget" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "on_archive_widget";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-on_archive_widget" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_archive_widget()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+                        INSERT INTO public.monitoring_widget_archive
+                        (id, object_id, user_id, client_id, widget_type, widget_name, unit_id, timestamp_from, timestamp_to, position_x, position_y, period_id, width, height, filter_object_types, filter_object_measure_unit, filter_objects, filter_property_types, filter_property_measure_unit, show_thresholds, created, modified, multiplier, display_unit_id, show_measure_unit, customization_id, show_tech_breaks, multiple_config)
+                        values (old.id, old.object_id, old.user_id, old.client_id, old.widget_type, old.widget_name, old.unit_id, old.timestamp_from, old.timestamp_to, old.position_x, old.position_y, old.period_id, old.width, old.height, old.filter_object_types, old.filter_object_measure_unit, old.filter_objects, old.filter_property_types, old.filter_property_measure_unit, old.show_thresholds, now(), now(), old.multiplier, old.display_unit_id, old.show_measure_unit, old.customization_id, old.show_tech_breaks, old.multiple_config);
+
+
+                        RETURN NEW;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

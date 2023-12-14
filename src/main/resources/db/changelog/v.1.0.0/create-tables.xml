@@ -75,7 +75,7 @@
     <include file="create-table/report_generation.xml" relativeToChangelogFile="true"/>
     <include file="create-table/report_schedule_history.xml" relativeToChangelogFile="true"/>
     <include file="create-table/report_type.xml" relativeToChangelogFile="true"/>
-    <include file="create-table/request.xml" relativeToChangelogFile="true"/>
+
     <include file="create-table/request_changelog.xml" relativeToChangelogFile="true"/>
     <include file="create-table/request_comment.xml" relativeToChangelogFile="true"/>
     <include file="create-table/request_file.xml" relativeToChangelogFile="true"/>
@@ -113,6 +113,13 @@
     <include file="create-table/entity_type.xml" relativeToChangelogFile="true"/>
     <include file="create-table/rule_request_type.xml" relativeToChangelogFile="true"/>
     <include file="create-table/user_status.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/request.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_entity_archive.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_property_archive.xml" relativeToChangelogFile="true"/>
+<!--    <include file="create-table/monitoring_object_relation_archive.xml" relativeToChangelogFile="true"/>-->
+    <include file="create-table/monitoring_object_user_customization_archive.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_widget_element_archive.xml" relativeToChangelogFile="true"/>
+    <include file="create-table/monitoring_object_relation_archive.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
 

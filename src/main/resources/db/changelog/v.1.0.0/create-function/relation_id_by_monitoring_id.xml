@@ -5,6 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-function-relation_id_by_monitoring_id" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "relation_id_by_monitoring_id";
+        </sql>
+    </changeSet>
+
     <changeSet id="create-function-relation_id_by_monitoring_id" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.relation_id_by_monitoring_id(monitoring_list character varying)

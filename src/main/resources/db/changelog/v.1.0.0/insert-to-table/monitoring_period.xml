@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-monitoring_period" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.monitoring_period
+                (period_name, seconds)
+            VALUES 	('День', 86400),
+                      ( 'Неделя', 604800),
+                      ( 'Месяц', 2678400),
+                      ('Квартал', 7862400),
+                      ('Год', 31536000),
+                      ( 'Полугодие',15724800);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

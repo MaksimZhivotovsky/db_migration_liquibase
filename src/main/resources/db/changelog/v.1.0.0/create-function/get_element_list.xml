@@ -7,20 +7,20 @@
 
     <changeSet id="drop-function-get_element_list" author="M_Zhivotovskiy">
         <sql splitStatements="false">
-            DROP function IF EXISTS "get_element_list" CASCADE;
+            DROP function IF EXISTS "get_element_list";
         </sql>
     </changeSet>
 
     <changeSet id="create-function-get_element_list" author="M_Zhivotovskiy">
         <sql splitStatements="false">
-            create function get_element_list(p_value jsonb, p_keyname text)
-            returns text
-            as
-            $$
-            select string_agg(x.val ->> p_keyname, ',')
-            from jsonb_array_elements(p_value) as x(val);
-            $$
-            language sql;
+            CREATE OR REPLACE FUNCTION public.get_element_list(p_value jsonb, p_keyname text)
+             RETURNS text
+             LANGUAGE sql
+            AS $function$
+                        select string_agg(x.val ->> p_keyname, ',')
+                        from jsonb_array_elements(p_value) as x(val);
+                        $function$
+                        ;
         </sql>
     </changeSet>
 

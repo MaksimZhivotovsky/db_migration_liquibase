@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_widget_element_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_widget_element_archive" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_widget_element_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_widget_element_archive (
+                  id int8 NOT NULL,
+                  widget_id int8 NOT NULL,
+                  object_id int8 NULL,
+                  property_id int8 NULL,
+                  color_id int8 NULL,
+                  place int8 NULL,
+                  created timestamp NULL,
+                  modified timestamp NULL
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

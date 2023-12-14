@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-role_grant" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.role_grant
+            (role_id, grant_id, is_enable, is_create, is_read, is_update, is_delete)
+            select id, 93, true, true, true, true, true from role_sc;
+
+            INSERT INTO public.role_grant
+            (role_id, grant_id, is_enable, is_create, is_read, is_update, is_delete)
+            select id, 15, true, true, true, true, true from role_sc;
+
+            INSERT INTO public.role_grant
+            (role_id, grant_id, is_enable, is_create, is_read, is_update, is_delete)
+            select id, 102, true, true, true, true, true from role_sc;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

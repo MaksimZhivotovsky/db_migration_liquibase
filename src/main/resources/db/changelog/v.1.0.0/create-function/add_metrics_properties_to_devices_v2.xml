@@ -5,6 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-function-add_metrics_properties_to_devices_v2" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "add_metrics_properties_to_devices_v2";
+        </sql>
+    </changeSet>
+
     <changeSet id="create-function-add_metrics_properties_to_devices_v2" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.add_metrics_properties_to_devices_v2(devicetypeid bigint, autocreateid bigint)
@@ -126,10 +132,6 @@
                                false, false,  param_to_create.entity_map_id, 0);
 
                         end loop;
-
-                        drop table if exists props_to_create_from_metrics_temp;
-                        drop table if exists prop_names_already_existing_temp;
-
 
                         insert into dic_element_params
                         ("name", param_type_id, dic_element_id, require, "comment", is_map, is_hide)

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-trigger-monitoring_object_entity_archive-update_monitoring_object_entity_archive_created"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            create trigger update_monitoring_object_entity_archive_created before
+                insert
+                on
+                    public.monitoring_object_entity_archive for each row execute PROCEDURE update_created_column();
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-trigger-monitoring_object_entity_archive-update_monitoring_object_entity_archive_modified"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            create trigger update_monitoring_object_entity_archive_modified before
+                insert
+                or
+            update
+                on
+                public.monitoring_object_entity_archive for each row execute PROCEDURE update_modified_column();
+        </sql>
+    </changeSet>
+</databaseChangeLog>

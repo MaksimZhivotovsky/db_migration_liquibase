@@ -13,4 +13,14 @@
             FOR EACH ROW EXECUTE PROCEDURE  update_created_column();
         </sql>
     </changeSet>
+
+    <changeSet id="create-trigger-monitoring_object_user_customization-on_delete_monitoring_object_user_customization_trigger"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            create trigger on_delete_monitoring_object_user_customization_trigger after
+                delete
+                on
+                    public.monitoring_object_user_customization for each row execute PROCEDURE on_archive_customization();
+        </sql>
+    </changeSet>
 </databaseChangeLog>

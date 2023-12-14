@@ -5,11 +5,17 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-function-on_entity_property_value_changes" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "on_entity_property_value_changes";
+        </sql>
+    </changeSet>
+
     <changeSet id="create-function-on_entity_property_value_changes" author="M_Zhivotovskiy">
         <sql splitStatements="false">
             CREATE OR REPLACE FUNCTION public.on_entity_property_value_changes()
-            RETURNS trigger
-            LANGUAGE plpgsql
+             RETURNS trigger
+             LANGUAGE plpgsql
             AS $function$
                         BEGIN
                     IF (TG_OP = 'DELETE') THEN

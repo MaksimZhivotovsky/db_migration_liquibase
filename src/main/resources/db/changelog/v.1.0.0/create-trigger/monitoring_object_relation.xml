@@ -22,4 +22,16 @@
             FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
         </sql>
     </changeSet>
+
+    <changeSet id="create-trigger-monitoring_object_relation-on_archive_monitoring_object_relation_trigger"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            create trigger on_archive_monitoring_object_relation_trigger after
+                delete
+                or
+            update
+                on
+                public.monitoring_object_relation for each row execute PROCEDURE on_archive_monitoring_object_relation();
+        </sql>
+    </changeSet>
 </databaseChangeLog>

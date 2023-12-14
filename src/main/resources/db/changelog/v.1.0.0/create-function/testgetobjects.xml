@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-testgetobjects" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "testgetobjects";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-testgetobjects" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.testgetobjects(organizationids character varying)
+             RETURNS TABLE(entityid bigint, relationid bigint, entityname character varying, is_hide boolean, color_id smallint, organizationid bigint, parentid bigint, parentrelationid bigint, elementid bigint, dicid bigint, plaginname character varying)
+             LANGUAGE sql
+             PARALLEL SAFE
+            AS $function$
+                        select moe.id as entityId, mor2.id as relationId, moe."name" as entityName,
+                               moe.is_hide, mos.color_id::smallint,
+                                moe.client_id as organizationId, mor2.entity_id_1 as parentId, mor2.relation_id_1 as parentRelationId,
+                               moe.dic_element_id as elementid,
+                               dee.entity_type_id as dicid, plugin_parent."name" as plaginname
+                        from monitoring_object_entity moe
+                                 join monitoring_object_relation mor2 on mor2.entity_id_2 = moe.id
+                                 left join monitoring_object_status mos on mos.entity_sc_id = moe.id
+                                 inner join dic_entity_element dee on dee.id = moe.dic_element_id
+                                 left join entity plugin_parent on plugin_parent.id = moe.plugin_entity_map_id
+                        where not exists (select mor.id from monitoring_object_relation mor where mor.relation_id_1 = mor2.id and mor.is_archive = false) and
+                            moe.is_archive = false and moe.client_id =
+                            any(string_to_array( organizationIds, ',')::int8[] )
+                          and mor2.is_archive = false;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

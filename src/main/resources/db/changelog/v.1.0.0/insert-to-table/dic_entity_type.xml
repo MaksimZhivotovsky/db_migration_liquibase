@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-dic_entity_type" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.dic_entity_type ("name", description, system_name)
+            VALUES	('Адаптеры мониторинга', '', 'ADAPTER_MONITORING'),
+                      ('Системы мониторинга', '', 'MONITORING_SYSTEM'),
+                      ('Договор', '', 'CONTRACT'),
+                      ('Организации', '', 'ORGANIZATION'),
+                      ('Ед. измерения', '', 'MEASURE_UNIT');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

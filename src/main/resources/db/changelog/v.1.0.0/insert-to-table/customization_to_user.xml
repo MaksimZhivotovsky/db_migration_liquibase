@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-customization_to_user" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            INSERT INTO public.customization_to_user
+                (customization_id, user_id, all_group_users)
+            select mouc.id, u.id , false from monitoring_object_user_customization mouc
+                                                  join user_sc u on u.keycloak_id = mouc.user_id ;
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

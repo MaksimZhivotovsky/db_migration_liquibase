@@ -5,6 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-EXTENSION-pgcrypto" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            create extension if not exists pgcrypto;
+        </sql>
+    </changeSet>
+
     <changeSet id="drop-table-adapter_entity" author="M_Zhivotovskiy">
         <sql splitStatements="true">
             DROP TABLE IF EXISTS "adapter_entity" CASCADE;
@@ -13,8 +19,6 @@
 
     <changeSet id="create-table-adapter_entity" author="M_Zhivotovskiy">
         <sql splitStatements="true">
---             CREATE EXTENSION pgcrypto;
-
             CREATE TABLE public.adapter_entity (
                id uuid NOT NULL DEFAULT gen_random_uuid(),
                "name" varchar(256) NULL,

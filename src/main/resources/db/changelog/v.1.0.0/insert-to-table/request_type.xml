@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-request_type" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.request_type
+                (id, "name", rusname, color_id) OVERRIDING SYSTEM VALUE
+            VALUES(1, 'Progress', 'В работе', 8),
+                  (2, 'Closed', 'Закрыта', 6),
+                  (4,'Created', 'Создана', 5),
+                  (3,'Wait', 'В ожидании', 3),
+                  (5,'Registered', 'Зарегистрирована', 5);
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

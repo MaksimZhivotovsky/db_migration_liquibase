@@ -20,4 +20,13 @@
             ON public.monitoring_object_relation USING btree (entity_id_2);
         </sql>
     </changeSet>
+
+    <changeSet id="create-index-monitoring_object_relation-monitoring_object_relation_relation_id_1_idx"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE INDEX monitoring_object_relation_relation_id_1_idx
+                ON public.monitoring_object_relation USING btree (relation_id_1);
+
+        </sql>
+    </changeSet>
 </databaseChangeLog>

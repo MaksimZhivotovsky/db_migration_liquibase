@@ -20,4 +20,12 @@
                 ON public.monitoring_object_entity USING btree (entity_map_id);
         </sql>
     </changeSet>
+
+    <changeSet id="create-index-monitoring_object_entity-monitoring_object_entity_client_id_idx"
+               author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE INDEX monitoring_object_entity_client_id_idx
+                ON public.monitoring_object_entity USING btree (client_id);
+        </sql>
+    </changeSet>
 </databaseChangeLog>

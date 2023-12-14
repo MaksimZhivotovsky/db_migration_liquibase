@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-on_archive_customization" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "on_archive_customization";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-on_archive_customization" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_archive_customization()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+
+                        INSERT INTO monitoring_object_user_customization_archive
+                        (id, user_id, customization_name, last_updated, client_id, created, monitoring_object_id, created_by, last_modified_by, all_users)
+                        VALUES(old.id, old.user_id, old.customization_name, now(), old.client_id, now(), old.monitoring_object_id, old.created_by, old.last_modified_by, old.all_users);
+
+
+                        RETURN NEW;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

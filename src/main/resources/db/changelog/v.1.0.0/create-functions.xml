@@ -13,11 +13,20 @@
     <include file="create-function/on_entity_property_value_changes.xml" relativeToChangelogFile="true"/>
     <include file="create-function/update_object_status_on_incidents_change.xml" relativeToChangelogFile="true"/>
     <include file="create-function/to_safe_json_array_varchar.xml" relativeToChangelogFile="true"/>
-    <include file="create-function/trigger_archive_monitoring_property.xml" relativeToChangelogFile="true"/>
-    <include file="create-function/trigger_archive_monitoring_property_rel.xml" relativeToChangelogFile="true"/>
     <include file="create-function/add_metrics_properties_to_devices_v2.xml" relativeToChangelogFile="true"/>
-    <include file="create-function/monitoring_id_by_relation_id.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/monitorig_id_by_relation_id.xml" relativeToChangelogFile="true"/>
     <include file="create-function/relation_id_by_monitoring_id.xml" relativeToChangelogFile="true"/>
-    <include file="create-function/get_element_list.xml" relativeToChangelogFile="true"/>
 
+    <include file="create-function/on_archive_customization.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/on_archive_formula.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/on_archive_monitoring_object_entity.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/on_archive_monitoring_object_relation.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/get_all_realations.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/json_array_castint.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/monitoring_id_by_relation_id.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/on_archive_widget_element.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/relation_id_by_monitorig_id.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/testgetobjects.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/get_element_list.xml" relativeToChangelogFile="true"/>
+    <include file="create-function/on_archive_widget.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

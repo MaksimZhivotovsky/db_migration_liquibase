@@ -5,15 +5,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                                http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
+    <changeSet id="drop-function-update_created_column" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "update_created_column";
+        </sql>
+    </changeSet>
+
     <changeSet id="create-function-update_created_column" author="M_Zhivotovskiy">
         <sql splitStatements="false">
-            CREATE OR REPLACE FUNCTION update_created_column()
-            RETURNS TRIGGER AS $$
+            CREATE OR REPLACE FUNCTION public.update_created_column()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
                         BEGIN
                 NEW.created = now();
                         RETURN NEW;
                         END;
-            $$ language 'plpgsql';
+                        $function$
+                        ;
         </sql>
     </changeSet>
 

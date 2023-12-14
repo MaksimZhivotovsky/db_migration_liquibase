@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-monitorig_id_by_relation_id" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "monitorig_id_by_relation_id";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-monitorig_id_by_relation_id" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.monitorig_id_by_relation_id(relation_list character varying)
+             RETURNS TABLE(id bigint, entity_id bigint)
+             LANGUAGE sql
+             PARALLEL SAFE
+            AS $function$
+                        SELECT  id, entity_id_2 FROM public.monitoring_object_relation m WHERE id = any(string_to_array( relation_list, ',')::int8[] ) ;
+
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

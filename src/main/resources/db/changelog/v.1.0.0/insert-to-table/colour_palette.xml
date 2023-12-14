@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-colour_palette" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.colour_palette
+                (id, "name", value)
+            VALUES	(1, 'Черный', '#101828'),
+                      (2, 'Синий', '#273A64'),
+                      (3, 'Желтый', '#F4B941'),
+                      (4, 'Фиолетовый', '#9541f4'),
+                      (5, 'Красный', '#EB3728'),
+                      (6, 'Зеленый', '#01AF82'),
+                      (7, 'Серый', '#868B95'),
+                      (8, 'Оранжевый', '#FF4F12');
+
+            INSERT INTO colour_palette (id,"name",value)
+            VALUES
+                (1,'Черный','#101828'),
+                (2,'Синий','#273A64'),
+                (3,'Желтый','#F4B941'),
+                (4,'Фиолетовый','#9541f4'),
+                (5,'Красный','#EB3728'),
+                (6,'Зеленый','#01AF82'),
+                (7,'Серый','#868B95'),
+                (8,'Оранжевый','#FF4F12'),
+                (9,'Серозеленый','#29CCA3'),
+                (10,'Голубой','#2F9AFF'),
+                (11,'Салатовый','#00D359'),
+                (12,'Малиновый','#FF0C0C'),
+                (13,'Сиреневый','#7700FF'),
+                (14,'Желтозеленый','#FCD549')
+                ON CONFLICT (id) DO UPDATE
+                                        SET "name" = excluded."name",
+                                        value = excluded.value;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

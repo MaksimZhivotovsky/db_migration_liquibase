@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_entity_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_entity_archive" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_entity_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_entity_archive (
+                 id int8 NOT NULL,
+                 dic_element_id int8 NULL,
+                 "name" varchar NULL,
+                 client_id int8 NULL,
+                 entity_map_id int8 NULL,
+                 adapter_map_id uuid NULL,
+                 measure_unit_id int8 NULL,
+                 is_map_value bool NOT NULL DEFAULT false,
+                 autocreate_id int8 NULL,
+                 schedule_local varchar NULL,
+                 is_hide bool NOT NULL DEFAULT false,
+                 created timestamp NULL,
+                 modified timestamp NULL,
+                 is_archive bool NULL DEFAULT false,
+                 is_tech_interval bool NOT NULL DEFAULT false,
+                 plugin_entity_map_id int8 NULL,
+                 plugin_type_entity_id varchar NULL
+            );
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

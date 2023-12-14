@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-user_status" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.user_status
+                (id, "name", color_id)
+            VALUES(1, 'Неактивный', 3),
+                  (2, 'Активный', 6),
+                  (3, 'Заблокированый', 5);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

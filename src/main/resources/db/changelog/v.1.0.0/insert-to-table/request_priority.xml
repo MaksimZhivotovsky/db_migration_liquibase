@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-request_priority" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.request_priority
+                (id, "name", rus_name) OVERRIDING SYSTEM VALUE
+            VALUES(1,'First', 'Первый'),
+                  (2, 'Second', 'Второй'),
+                  (3, 'Third', 'Третий'),
+                  (4, 'Fourth', 'Четвертый'),
+                  (5,'Default', 'Норма');
+
+            UPDATE public.request_priority
+            SET  color_id=3
+            WHERE id=3;
+
+            UPDATE public.request_priority
+            SET  color_id=8
+            WHERE id=2;
+
+            UPDATE public.request_priority
+            SET  color_id=6
+            WHERE id=4;
+
+            UPDATE public.request_priority
+            SET  color_id=5
+            WHERE id=1;
+
+            UPDATE public.request_priority
+            SET  color_id=7
+            WHERE id=5;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

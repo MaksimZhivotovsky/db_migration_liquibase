@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-function-on_archive_formula" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            DROP function IF EXISTS "on_archive_formula";
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-function-on_archive_formula" author="M_Zhivotovskiy">
+        <sql splitStatements="false">
+            CREATE OR REPLACE FUNCTION public.on_archive_formula()
+             RETURNS trigger
+             LANGUAGE plpgsql
+            AS $function$
+                        BEGIN
+                if TG_OP = 'DELETE' then
+                    INSERT INTO formula_archive
+            (id, formula_type, fun_type, object_property_id, id_arguments, is_object, is_requests, is_value, is_count, culc_period, criteria_count, is_child, arguments, multiplier, plugin_name_object, plugin_name_object_child, is_all_object, is_all_parameter, element_id_object, assignment_entity_map_id, parent_object_id, object_name_compare_id, object_mask, argument_property_types)
+            values (old.id, old.formula_type, old.fun_type, old.object_property_id, old.id_arguments, old.is_object, old.is_requests, old.is_value, old.is_count, old.culc_period, old.criteria_count, old.is_child, old.arguments, old.multiplier, old.plugin_name_object, old.plugin_name_object_child, old.is_all_object, old.is_all_parameter, old.element_id_object, old.assignment_entity_map_id, old.parent_object_id, old.object_name_compare_id, old.object_mask, old.argument_property_types);
+
+                        end if;
+
+                        RETURN NEW;
+                        END;
+                        $function$
+                        ;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

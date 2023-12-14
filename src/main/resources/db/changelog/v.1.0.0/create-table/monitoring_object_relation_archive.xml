@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="drop-table-monitoring_object_relation_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            DROP TABLE IF EXISTS "monitoring_object_relation_archive" CASCADE;
+        </sql>
+    </changeSet>
+
+    <changeSet id="create-table-monitoring_object_relation_archive" author="M_Zhivotovskiy">
+        <sql splitStatements="true">
+            CREATE TABLE public.monitoring_object_relation_archive (
+                   id int8 NOT NULL,
+                   entity_id_1 int8 NULL,
+                   entity_id_2 int8 NULL,
+                   relation_type_id int8 NULL,
+                   direction varchar NULL,
+                   created timestamp NULL,
+                   modified timestamp NULL,
+                   is_archive bool NOT NULL DEFAULT false,
+                   relation_id_1 int8 NULL,
+                   organization_id int8 NULL
+            );
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-entity_type_order" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.entity_type_order
+            (entity_type_id, "order", filter_property_name, filter_entity_type_id, description, parent_type_id, adapter_type_system_name, system_type_name, is_external_type)
+            VALUES(6,1, null, null, 'DE ResourceGroup', null, 'DE', 'DE_SYSTEM', false),
+                  (12, 3, null, null, 'DE MetricDe', 9, 'DE', 'DE_SYSTEM', false),
+                  (7, 4, null, null, 'DE Disk', 6, 'DE', 'DE_SYSTEM', false),
+                  (9, 2, null, null, 'DE Compute', 6, 'DE', 'DE_SYSTEM', false),
+                  (8, 4, 'type', 7, 'DE DiskType', null, 'DE', 'DE_SYSTEM', false),
+                  (10, 2, 'deviceTypeId', 2, 'SBND DeviceType',null, 'SBND', 'SBND_SYSTEM', true),
+                  (1, 1, null, null, 'SBND DeviceGroup', null, 'SBND', 'SBND_SYSTEM', false),
+                  (2, 2, null, null, 'SBND DeviceGroup', 1, 'SBND', 'SBND_SYSTEM', false),
+                  (5, 4, 'pluginObjectTypeId', 3, 'SBND DeviceGroup', null, 'SBND', 'SBND_SYSTEM', true),
+                  (3, 4, null, null, 'SBND DeviceGroup', 2, 'SBND', 'SBND_SYSTEM', false),
+                  (11, 5, 'pluginIndicatorTypeId', 4, 'SBND DeviceGroup', null, 'SBND', 'SBND_SYSTEM', true),
+                  (4, 5, null, null, 'SBND DeviceGroup', 3, 'SBND', 'SBND_SYSTEM', false),
+                  (13, 3, 'pluginId', 3, 'SBND DeviceGroup', null, 'SBND', 'SBND_SYSTEM', false),
+                  (10, 2, 'deviceTypeId', 2, 'FILES DeviceType',null, 'FILES', 'FILES_SYSTEM', true),
+                  (1, 1, null, null, 'FILES DeviceGroup', null, 'FILES', 'FILES_SYSTEM', false),
+                  (2, 2, null, null, 'FILES DeviceGroup', 1, 'FILES', 'FILES_SYSTEM', false),
+                  (5, 4, 'pluginObjectTypeId', 3, 'FILES DeviceGroup', null, 'FILES', 'FILES_SYSTEM', true),
+                  (3, 4, null, null, 'FILES DeviceGroup', 2, 'FILES', 'FILES_SYSTEM', false),
+                  (11, 5, 'pluginIndicatorTypeId', 4, 'FILES DeviceGroup', null, 'FILES', 'FILES_SYSTEM', true),
+                  (4, 5, null, null, 'FILES DeviceGroup', 3, 'FILES', 'FILES_SYSTEM', false),
+                  (13, 3, 'pluginId', 3, 'FILES DeviceGroup', null, 'FILES', 'FILES_SYSTEM', false);
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

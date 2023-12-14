@@ -34,7 +34,7 @@
     <include file="create-constraint/monitoring_object_settings_value.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/monitoring_system_entity.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/monitoring_system_entity_property.xml" relativeToChangelogFile="true"/>
-    <include file="create-constraint/monitoring_widget.xml" relativeToChangelogFile="true"/>
+
     <include file="create-constraint/monitoring_widget_element.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/notification_mail_attachment.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/organization_property.xml" relativeToChangelogFile="true"/>
@@ -60,5 +60,10 @@
     <include file="create-constraint/user_sc.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/user_session_sc.xml" relativeToChangelogFile="true"/>
     <include file="create-constraint/user_support_group.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_formula_last_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_last_value.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_status.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_object_user_customization.xml" relativeToChangelogFile="true"/>
+    <include file="create-constraint/monitoring_widget.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

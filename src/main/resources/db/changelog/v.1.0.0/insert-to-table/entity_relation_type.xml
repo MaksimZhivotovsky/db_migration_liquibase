@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                               http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="insert-to-entity_relation_type" author="M_Zhivotovskiy">
+        <sql>
+            INSERT INTO public.entity_relation_type(id,"name", description )
+            values (1,'Parent','Связь родитель-потомок'),
+                   (2,'OneToOne','Связь один к одному'),
+                   (3,'OneToMany','Связь один ко многим');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
